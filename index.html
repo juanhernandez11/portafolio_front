@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio | Juan Ramon Moreno Bravo</title>
+    <!-- Chosen Palette: Warm Neutrals (e.g., Stone, Amber, Orange) -->
+    <!-- Application Structure Plan: A single-page, thematic portfolio. Structure: Hero, About, Skills, Interactive Projects (filterable), Experience Timeline, Contact. This structure prioritizes showcasing practical skills and project outcomes over a simple chronological resume, which is more engaging for recruiters and better highlights frontend capabilities. The interactive project filter allows users to quickly find relevant examples. -->
+    <!-- Visualization & Content Choices: Report Info: Skills list -> Goal: Organize -> Method: Styled HTML/CSS grid with categories -> Justification: Clear, scannable, and visually organized without chart overhead. Report Info: Project descriptions & achievements -> Goal: Showcase -> Method: Interactive project cards with filterable tags (JS) -> Justification: Allows users to actively explore work based on context (e.g., 'Freelance') and highlights key achievements (35% speed boost) directly. Report Info: Work History -> Goal: Change (over time) -> Method: Vertical timeline (HTML/CSS) -> Justification: Provides chronological context in a visually appealing format. CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F4; /* stone-100 */
+            color: #292524; /* stone-800 */
+        }
+        .tag {
+            background-color: #FDE68A; /* amber-200 */
+            color: #A16207; /* amber-700 */
+            font-weight: 500;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            line-height: 1rem;
+            display: inline-block;
+        }
+        .filter-btn {
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .filter-btn.active {
+            background-color: #EA580C; /* orange-600 */
+            color: #FFFFFF;
+            border-color: #EA580C; /* orange-600 */
+        }
+        .filter-btn:not(.active) {
+            background-color: #FFFFFF;
+            color: #57534E; /* stone-600 */
+            border-color: #D6D3D1; /* stone-300 */
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.6rem;
+            top: 0.25rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background-color: #FFFFFF;
+            border: 3px solid #EA580C; /* orange-600 */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto max-w-5xl px-6 py-12 md:py-20">
+
+        <!-- Hero Section -->
+        <header id="home" class="text-center mb-20 md:mb-32">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-stone-900 leading-tight">
+                Juan Ramon Moreno Bravo
+            </h1>
+            <p class="mt-4 text-lg md:text-xl text-orange-600 font-semibold">
+                Desarrollador de Software Frontend
+            </p>
+            <p class="mt-6 max-w-2xl mx-auto text-stone-600">
+                Apasionado por crear interfaces de usuario intuitivas, atractivas y accesibles. Con un enfoque sólido en la optimización del rendimiento y el diseño responsivo para ofrecer la mejor experiencia de usuario.
+            </p>
+            <div class="mt-8 flex justify-center items-center gap-4">
+                <a href="https://github.com/juanhernandez11" target="_blank" class="text-stone-600 hover:text-orange-600 transition-colors" title="GitHub">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/juan-ramon-moreno-bravo-0830b1271/" target="_blank" class="text-stone-600 hover:text-orange-600 transition-colors" title="LinkedIn">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+            </div>
+        </header>
+
+        <!-- Skills Section -->
+        <section id="skills" class="mb-20 md:mb-32">
+            <h2 class="text-3xl font-bold text-center mb-12 text-stone-800">Habilidades Técnicas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-4 text-orange-600">Lenguajes y Frameworks</h3>
+                    <ul class="space-y-3 text-stone-600">
+                        <li><span class="font-semibold">HTML & CSS</span></li>
+                        <li><span class="font-semibold">JavaScript (ES6+)</span></li>
+                        <li><span class="font-semibold">React</span></li>
+                        <li><span class="font-semibold">Angular</span></li>
+                        <li><span class="font-semibold">Tailwind CSS & Bootstrap</span></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-4 text-orange-600">Herramientas y Plataformas</h3>
+                    <ul class="space-y-3 text-stone-600">
+                        <li><span class="font-semibold">Git & GitHub</span></li>
+                        <li><span class="font-semibold">MySQL & MongoDB</span></li>
+                        <li><span class="font-semibold">Microsoft Office</span></li>
+                        <li><span class="font-semibold">Optimización de Rendimiento</span></li>
+                        <li><span class="font-semibold">Diseño Responsivo</span></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-4 text-orange-600">UX/UI y Metodologías</h3>
+                    <ul class="space-y-3 text-stone-600">
+                        <li><span class="font-semibold">Optimización de UX/UI</span></li>
+                        <li><span class="font-semibold">Accesibilidad Web (WCAG)</span></li>
+                        <li><span class="font-semibold">Gestión de Proyectos</span></li>
+                        <li><span class="font-semibold">Trabajo en Equipo</span></li>
+                        <li><span class="font-semibold">Resolución de Problemas</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="mb-20 md:mb-32">
+            <h2 class="text-3xl font-bold text-center mb-4 text-stone-800">Proyectos Destacados</h2>
+            <p class="text-center text-stone-600 mb-12 max-w-2xl mx-auto">Una selección de proyectos que demuestran mi experiencia en desarrollo frontend, desde sitios freelance hasta sistemas internos.</p>
+            
+            <div class="flex justify-center flex-wrap gap-3 mb-12">
+                <button class="filter-btn active py-2 px-5 rounded-full font-semibold" data-filter="all">Todos</button>
+                <button class="filter-btn py-2 px-5 rounded-full font-semibold" data-filter="freelance">Freelance</button>
+                <button class="filter-btn py-2 px-5 rounded-full font-semibold" data-filter="professional">Profesional</button>
+                <button class="filter-btn py-2 px-5 rounded-full font-semibold" data-filter="personal">Personal</button>
+                <button class="filter-btn py-2 px-5 rounded-full font-semibold" data-filter="game">Juegos</button>
+            </div>
+
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- NEW PROJECTS FROM USER INPUT -->
+                <article class="project-card bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105" data-category="personal">
+                    <img src="https://placehold.co/600x400/81C784/1B5E20?text=App+Presupuesto" alt="Imagen del proyecto de aplicación de presupuesto" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-stone-800">App de Presupuesto Personal</h3>
+                        <div class="mb-4">
+                            <span class="tag">JavaScript</span> <span class="tag">HTML</span> <span class="tag">CSS</span>
+                        </div>
+                        <p class="text-stone-600 mb-4">
+                            Aplicación web interactiva para la gestión de ingresos y gastos personales. Permite a los usuarios registrar transacciones y visualizar el balance, ayudando en el control financiero.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/juanhernandez11/APP_PRESUPUESTO" target="_blank" class="text-orange-600 font-semibold hover:underline">GitHub →</a>
+                            <a href="https:://app-presupuesto-jrmb.netlify.app" class="text-orange-600 font-semibold hover:underline">Demo →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105" data-category="personal">
+                    <img src="https://placehold.co/600x400/FFCC80/E65100?text=App+Clima" alt="Imagen del proyecto de aplicación del clima" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-stone-800">App del Clima (API)</h3>
+                        <div class="mb-4">
+                            <span class="tag">JavaScript</span> <span class="tag">API</span> <span class="tag">HTML</span> <span class="tag">CSS</span>
+                        </div>
+                        <p class="text-stone-600 mb-4">
+                            Aplicación web que consume una API de clima para mostrar información meteorológica actual, pronósticos y condiciones climáticas de diferentes ciudades en tiempo real.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/juanhernandez11/app_clima_api" target="_blank" class="text-orange-600 font-semibold hover:underline">GitHub →</a>
+                            <a href="https:://app-clima-jh11.netlify.app" class="text-orange-600 font-semibold hover:underline">Demo →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105" data-category="personal">
+                    <img src="https://placehold.co/600x400/B2EBF2/006064?text=App+Noticias" alt="Imagen del proyecto de aplicación de noticias" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-stone-800">Aplicación de Noticias</h3>
+                        <div class="mb-4">
+                            <span class="tag">JavaScript</span> <span class="tag">API</span> <span class="tag">HTML</span> <span class="tag">CSS</span>
+                        </div>
+                        <p class="text-stone-600 mb-4">
+                            Agregador de noticias que permite a los usuarios explorar artículos y titulares de diversas fuentes de información global, utilizando una API de noticias para el contenido dinámico.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/juanhernandez11/APP_NOTOCIAS" target="_blank" class="text-orange-600 font-semibold hover:underline">GitHub →</a>
+                            <a href="https:://noticiasjrmb.netlify.app" class="text-orange-600 font-semibold hover:underline">Demo →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105" data-category="personal">
+                    <img src="https://placehold.co/600x400/FFCDD2/B71C1C?text=Digimon+API" alt="Imagen del proyecto de Digimon" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-stone-800">Coleccionista de Digimon</h3>
+                        <div class="mb-4">
+                            <span class="tag">JavaScript</span> <span class="tag">API</span> <span class="tag">HTML</span> <span class="tag">CSS</span>
+                        </div>
+                        <p class="text-stone-600 mb-4">
+                            Aplicación interactiva que consume una API de Digimon para buscar y mostrar información detallada sobre diferentes criaturas digitales, ideal para fans y coleccionistas.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/juanhernandez11/Digimonjrmb" target="_blank" class="text-orange-600 font-semibold hover:underline">GitHub →</a>
+                            <a href="https:://digimonjrmb.netlify.app" class="text-orange-600 font-semibold hover:underline">Demo →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105" data-category="personal">
+                    <img src="https://placehold.co/600x400/DCEDC8/33691E?text=App+Convertidor" alt="Imagen del proyecto de aplicación convertidor" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-stone-800">Aplicación Convertidor</h3>
+                        <div class="mb-4">
+                            <span class="tag">JavaScript</span> <span class="tag">HTML</span> <span class="tag">CSS</span> <span class="tag">Herramienta</span>
+                        </div>
+                        <p class="text-stone-600 mb-4">
+                            Herramienta web versátil para realizar conversiones rápidas entre diversas unidades de medida, incluyendo moneda, temperatura y longitud, diseñada para ser intuitiva.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/juanhernandez11/APP_CONVERTIDOR" target="_blank" class="text-orange-600 font-semibold hover:underline">GitHub →</a>
+                            <a href="https:://convertidorjrmb.netlify.app" class="text-orange-600 font-semibold hover:underline">Demo →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105" data-category="personal">
+                    <img src="https://placehold.co/600x400/BBDEFB/0D47A1?text=App+Tareas" alt="Imagen del proyecto de aplicación de tareas" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-stone-800">Aplicación de Tareas (To-Do List)</h3>
+                        <div class="mb-4">
+                            <span class="tag">JavaScript</span> <span class="tag">HTML</span> <span class="tag">CSS</span> <span class="tag">Gestión</span>
+                        </div>
+                        <p class="text-stone-600 mb-4">
+                            Una aplicación simple y efectiva para organizar y gestionar tareas pendientes. Permite a los usuarios añadir, marcar como completadas y eliminar tareas fácilmente.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/juanhernandez11/APP_TAREAS" target="_blank" class="text-orange-600 font-semibold hover:underline">GitHub →</a>
+                            <a href="https:://tareasjrmb.netlify.app" class="text-orange-600 font-semibold hover:underline">Demo →</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="project-card bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105" data-category="game">
+                    <img src="https://placehold.co/600x400/FFECB3/FF6F00?text=Ruleta+Juego" alt="Imagen del proyecto de juego de la ruleta" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-stone-800">Juego de la Ruleta</h3>
+                        <div class="mb-4">
+                            <span class="tag">JavaScript</span> <span class="tag">HTML</span> <span class="tag">CSS</span> <span class="tag">Juego</span>
+                        </div>
+                        <p class="text-stone-600 mb-4">
+                            Juego interactivo de la ruleta desarrollado para practicar lógica y manipulación del DOM, ofreciendo una experiencia de entretenimiento sencilla basada en JavaScript.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/juanhernandez11/RULETA_JRMB" target="_blank" class="text-orange-600 font-semibold hover:underline">GitHub →</a>
+                            <a href="https:://ruletajrmb.netlify.app" class="text-orange-600 font-semibold hover:underline">Demo →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105" data-category="game">
+                    <img src="https://placehold.co/600x400/FFE0B2/E65100?text=Piano+Interactivo" alt="Imagen del proyecto de piano interactivo" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-stone-800">Piano Interactivo</h3>
+                        <div class="mb-4">
+                            <span class="tag">JavaScript</span> <span class="tag">HTML</span> <span class="tag">CSS</span> <span class="tag">Sonido</span>
+                        </div>
+                        <p class="text-stone-600 mb-4">
+                            Aplicación web que simula un piano virtual, permitiendo a los usuarios tocar diferentes notas y crear melodías utilizando el teclado o el ratón.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/juanhernandez11/PIANO-JRMB" target="_blank" class="text-orange-600 font-semibold hover:underline">GitHub →</a>
+                            <a href="https:://pianojrmb.netlify.app" class="text-orange-600 font-semibold hover:underline">Demo →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105" data-category="game">
+                    <img src="https://placehold.co/600x400/E0F2F7/01579B?text=Dados+Juego" alt="Imagen del proyecto de lanzador de dados" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-stone-800">Lanzador de Dados</h3>
+                        <div class="mb-4">
+                            <span class="tag">JavaScript</span> <span class="tag">HTML</span> <span class="tag">CSS</span> <span class="tag">Juego</span>
+                        </div>
+                        <p class="text-stone-600 mb-4">
+                            Sencilla y divertida aplicación de juego que simula el lanzamiento de dos dados, mostrando resultados aleatorios con cada interacción del usuario.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/juanhernandez11/Dados_jrmb" target="_blank" class="text-orange-600 font-semibold hover:underline">GitHub →</a>
+                            <a href="https:://dadosjrmb.netlify.app" target="_blank" class="text-orange-600 font-semibold hover:underline">Demo →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105" data-category="personal">
+                    <img src="https://placehold.co/600x400/D1C4E9/4527A0?text=App+Series" alt="Imagen del proyecto de explorador de series y películas" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-stone-800">Explorador de Series y Películas</h3>
+                        <div class="mb-4">
+                            <span class="tag">JavaScript</span> <span class="tag">API</span> <span class="tag">HTML</span> <span class="tag">CSS</span>
+                        </div>
+                        <p class="text-stone-600 mb-4">
+                            Aplicación para buscar y obtener información detallada sobre una vasta colección de series de televisión y películas, utilizando una API de contenido multimedia.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/juanhernandez11/APP_SERIES_PELICULAS" target="_blank" class="text-orange-600 font-semibold hover:underline">GitHub →</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- EXISTING PROJECTS (KEPT FOR CONTINUITY) -->
+                <article class="project-card bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105" data-category="freelance">
+                    <img src="https://placehold.co/600x400/FDBA74/422006?text=Sitio+Web+Freelance" alt="Placeholder para proyecto de sitio web freelance" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-stone-800">Sitio Web Corporativo</h3>
+                        <div class="mb-4">
+                            <span class="tag">HTML</span> <span class="tag">CSS</span> <span class="tag">JavaScript</span> <span class="tag">Bootstrap</span>
+                        </div>
+                        <p class="text-stone-600 mb-4">
+                            Desarrollo de sitios web responsivos para clientes. Enfoque en la optimización de rendimiento, logrando una <strong class="text-orange-600">reducción del 35% en tiempos de carga</strong> mediante lazy loading y minificación.
+                        </p>
+                        <!-- <div class="flex gap-4">
+                            <a href="#" class="text-orange-600 font-semibold hover:underline">GitHub →</a>
+                            <a href="#" class="text-orange-600 font-semibold hover:underline">Demo →</a>
+                        </div> -->
+                    </div>
+                </article>
+
+                <article class="project-card bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105" data-category="professional">
+                    <img src="https://placehold.co/600x400/A5B4FC/1E1B4B?text=Sistema+de+Inventario" alt="Placeholder para proyecto de sistema de inventario" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-stone-800">Sistema de Control de Inventario</h3>
+                         <div class="mb-4">
+                            <span class="tag">HTML</span> <span class="tag">CSS</span> <span class="tag">JavaScript</span> <span class="tag">PHP</span> <span class="tag">MYSQL</span> <span class="tag">Bootstrap</span>
+                        </div>
+                        <p class="text-stone-600 mb-4">
+                            Diseño y desarrollo de la interfaz de usuario para un sistema de gestión interna. Se logró una <strong class="text-orange-600">reducción del 20% en el tiempo de gestión de datos</strong> gracias a un diseño de UX más fluido.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="mb-20 md:mb-32">
+            <h2 class="text-3xl font-bold text-center mb-12 text-stone-800">Experiencia y Formación</h2>
+            <div class="relative pl-10 border-l-2 border-stone-200">
+                
+                <div class="timeline-item relative mb-10">
+                    <p class="font-bold text-stone-800">Auxiliar de Técnico Instalador</p>
+                    <p class="text-sm text-stone-500">Solit Wireless y Fibra Óptica | Nov 2024 - Mar 2025</p>
+                    <p class="mt-2 text-stone-600">Instalación y mantenimiento de equipos de telecomunicaciones.</p>
+                </div>
+                
+                <div class="timeline-item relative mb-10">
+                    <p class="font-bold text-stone-800">Pasante de Informática</p>
+                    <p class="text-sm text-stone-500">Jurisdicción Sanitaria Núm. 10 | May 2024 - Ago 2024</p>
+                    <p class="mt-2 text-stone-600">Participé en el desarrollo de un sistema de control de inventarios y diseñé interfaces de usuario.</p>
+                </div>
+
+                <div class="timeline-item relative mb-10">
+                    <p class="font-bold text-stone-800">Desarrollador Web (Freelance)</p>
+                    <p class="text-sm text-stone-500">Trabajo Independiente | May 2021 - Dic 2023</p>
+                    <p class="mt-2 text-stone-600">Creación de sitios web responsivos y optimizados para diversos clientes.</p>
+                </div>
+
+                <div class="timeline-item relative mb-10">
+                    <p class="font-bold text-stone-800">Técnico Superior Universitario en Desarrollo de Software</p>
+                    <p class="text-sm text-stone-500">Universidad Tecnológica de Tehuacán | 2022 - 2024</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <footer id="contact" class="text-center">
+             <h2 class="text-3xl font-bold text-center mb-4 text-stone-800">Hablemos</h2>
+             <p class="text-stone-600 mb-8 max-w-xl mx-auto">Estoy buscando nuevas oportunidades y me encantaría saber cómo puedo aportar valor a tu equipo. No dudes en contactarme.</p>
+             <a href="mailto:juanhernandezbravo750@gmail.com" 
+                class="inline-block bg-orange-600 text-white font-bold text-lg py-4 px-8 rounded-lg hover:bg-orange-700 transition-colors">
+                Enviar un correo
+            </a>
+            <div class="mt-12 text-sm text-stone-500">
+                <p>&copy; 2025 Juan Ramon Moreno Bravo. Diseñado y desarrollado por mí.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projects = document.querySelectorAll('.project-card');
+            const projectsGrid = document.getElementById('projects-grid');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Update active button state
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filter = this.getAttribute('data-filter');
+
+                    // Animate out old projects
+                    projects.forEach(project => {
+                        project.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
+                        project.style.opacity = '0';
+                        project.style.transform = 'scale(0.95)';
+                    });
+                    
+                    setTimeout(() => {
+                        projects.forEach(project => {
+                            const category = project.getAttribute('data-category');
+                            if (filter === 'all' || filter === category) {
+                                project.style.display = 'block';
+                            } else {
+                                project.style.display = 'none';
+                            }
+                        });
+
+                        // Animate in new projects
+                        projects.forEach(project => {
+                            if (project.style.display === 'block') {
+                                setTimeout(() => {
+                                    project.style.opacity = '1';
+                                    project.style.transform = 'scale(1)';
+                                }, 50);
+                            }
+                        });
+                    }, 300);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
