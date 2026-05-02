@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café Bloom | Experiencia Master 3D</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --orange: #F0923A;
+            --caramel: #D4732A;
+            --brown: #6B3A2A;
+            --cream: #FFF8F0;
+            --peach: #FFD4A8;
+            --white: #ffffff;
+            --success: #4CAF50;
+            --error: #FF5252;
+            
+            --text-3d: 1px 1px 0 #D4732A, 2px 2px 0 #D4732A, 3px 3px 0 #D4732A;
+            --clay-box: inset 5px 5px 10px rgba(255,255,255,0.8), 
+                        inset -5px -5px 10px rgba(107, 58, 42, 0.05),
+                        0 15px 35px rgba(107, 58, 42, 0.1);
+            --btn-3d-shadow: 0 10px 0 #b35f21, 0 20px 30px rgba(240, 146, 58, 0.3);
+        }
+
+        body.afternoon {
+            --cream: #fce8d5;
+            --peach: #ffc991;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--cream);
+            color: var(--brown);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            transition: background-color 0.8s ease;
+        }
+
+        h1, h2, h3 { font-family: 'Nunito', sans-serif; }
+
+        .studio-floor {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background: radial-gradient(circle at 50% 50%, var(--white) 0%, var(--cream) 100%);
+        }
+
+        .floating-clay {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+            animation: floatSlow 6s infinite ease-in-out;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        .btn-squishy {
+            background: linear-gradient(135deg, var(--orange), var(--caramel));
+            color: white;
+            padding: 1.2rem 2.8rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 900;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: var(--btn-3d-shadow);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.6);
+            position: relative;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-squishy:active {
+            transform: translateY(8px) scale(0.95);
+            box-shadow: none;
+        }
+
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 5%;
+            right: 5%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            padding: 0.8rem 2rem;
+            border-radius: 100px;
+            border: 1px solid white;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+        }
+
+        .cart-trigger {
+            position: relative;
+            cursor: pointer;
+            background: white;
+            padding: 10px 18px;
+            border-radius: 20px;
+            box-shadow: var(--clay-box);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+        }
+
+        .cart-count {
+            background: var(--orange);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.5);
+        }
+
+        .cart-count.bump { transform: scale(1.4); }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 350px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(25px);
+            z-index: 2000;
+            transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            padding: 2rem;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-drawer.open { right: 0; }
+
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin: 2rem 0;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: white;
+            padding: 15px;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            box-shadow: var(--clay-box);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+            padding: 160px 8% 4rem;
+            gap: 4rem;
+            position: relative;
+        }
+
+        @media (min-width: 1024px) { .hero { grid-template-columns: 1.2fr 0.8fr; } }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            text-shadow: var(--text-3d);
+            margin-bottom: 2rem;
+        }
+
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--white);
+            color: var(--brown);
+            padding: 1rem 2rem;
+            border-radius: 20px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #ddd;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: var(--orange);
+            color: white;
+            box-shadow: 0 5px 0 #b35f21;
+            transform: translateY(-2px);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            padding: 0 5%;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 40px;
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--clay-box);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: none;
+        }
+
+        .product-card.show { display: block; }
+        .product-card:hover { transform: translateY(-15px); }
+
+        .price-tag {
+            background: var(--brown);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 15px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-weight: 900;
+        }
+
+        .testimonials {
+            padding: 8rem 5%;
+            background: white;
+            border-radius: 80px 80px 0 0;
+            margin-top: 5rem;
+        }
+
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .testi-card {
+            background: var(--cream);
+            padding: 2.5rem;
+            border-radius: 40px;
+            box-shadow: var(--clay-box);
+            text-align: center;
+        }
+
+        .avatar-3d {
+            width: 80px;
+            height: 80px;
+            background: var(--peach);
+            border-radius: 30px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: var(--clay-box);
+        }
+
+        footer {
+            padding: 5rem 5%;
+            background: var(--brown);
+            color: white;
+            text-align: center;
+        }
+
+        .vibe-switcher {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 50px;
+            box-shadow: var(--clay-box);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .vibe-dot {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="studio-floor"></div>
+
+    <div class="floating-clay" style="top: 20%; left: 5%; width: 50px;">
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="var(--peach)" opacity="0.6"/></svg>
+    </div>
+    <div class="floating-clay" style="top: 60%; right: 5%; width: 40px; animation-delay: -2s;">
+        <svg viewBox="0 0 100 100"><path d="M20,20 Q50,0 80,20 Q100,50 80,80 Q50,100 20,80 Q0,50 20,20" fill="var(--orange)" opacity="0.4"/></svg>
+    </div>
+
+    <div class="vibe-switcher">
+        <div class="vibe-dot" style="background: var(--peach);" onclick="document.body.classList.remove('afternoon')" title="Mañana"></div>
+        <div class="vibe-dot" style="background: var(--caramel);" onclick="document.body.classList.add('afternoon')" title="Tarde"></div>
+    </div>
+
+    <nav>
+        <div style="font-family: 'Nunito'; font-weight: 900; font-size: 1.8rem; display: flex; align-items: center; gap: 10px;">
+            <div style="background: var(--orange); width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; box-shadow: var(--clay-box);">🌸</div>
+            Bloom
+        </div>
+        <div style="display: flex; gap: 2rem; align-items: center;">
+            <a href="#menu" style="text-decoration: none; color: var(--brown); font-weight: 600;">Menú</a>
+            <div class="cart-trigger" onclick="toggleCart()">
+                <span>👜</span>
+                <span id="cart-count" class="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <div id="cart-drawer" class="cart-drawer">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2 style="font-size: 1.8rem;">Tu Pedido</h2>
+            <button onclick="toggleCart()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">✕</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <p style="text-align: center; opacity: 0.5;">Tu carrito está vacío ☕</p>
+        </div>
+        <div style="padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.1);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1.5rem;">
+                <span style="font-weight: 600;">Total</span>
+                <span id="cart-total" style="font-weight: 900; font-size: 1.4rem;">$0.00</span>
+            </div>
+            <button class="btn-squishy" style="width: 100%;" onclick="alert('¡Gracias por tu pedido Bloom!')">Pagar Ahora</button>
+        </div>
+    </div>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div style="background: var(--peach); padding: 5px 15px; border-radius: 50px; display: inline-block; font-weight: 900; font-size: 0.8rem; margin-bottom: 1.5rem; box-shadow: var(--clay-box);">EDICIÓN MASTER</div>
+                <h1>Donde el Diseño se Bebe.</h1>
+                <p style="font-size: 1.3rem; margin-bottom: 3rem; opacity: 0.8; line-height: 1.6;">Explora la cafetería con la estética más suave del mundo. Cada sorbo es una textura, cada visita es una inspiración.</p>
+                <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                    <a href="#menu" class="btn-squishy">Explorar Carta</a>
+                    <button class="btn-squishy" style="background: white; color: var(--brown); box-shadow: 0 10px 0 #eee;">Nuestra Historia</button>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <svg viewBox="0 0 200 200" style="width: 100%; max-width: 420px; filter: drop-shadow(0 40px 50px rgba(107, 58, 42, 0.2));">
+                    <defs>
+                        <radialGradient id="cupGrad" cx="30%" cy="30%" r="70%">
+                            <stop offset="0%" stop-color="#FFD4A8" />
+                            <stop offset="100%" stop-color="#F0923A" />
+                        </radialGradient>
+                    </defs>
+                    <path d="M50,80 Q50,160 100,160 Q150,160 150,80 Z" fill="url(#cupGrad)" />
+                    <path d="M150,90 Q185,90 185,115 Q185,140 150,135" fill="none" stroke="var(--caramel)" stroke-width="15" stroke-linecap="round" />
+                    <ellipse cx="100" cy="80" rx="48" ry="15" fill="#3d2118" />
+                    <path d="M65,100 Q65,130 95,140" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" opacity="0.4" />
+                </svg>
+            </div>
+        </section>
+
+        <section id="menu" style="padding: 8rem 5% 4rem;">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="font-size: 3.5rem; text-shadow: var(--text-3d);">Nuestras Joyas</h2>
+                <p style="opacity: 0.7; font-weight: 600;">Texturas líquidas y horneadas</p>
+            </div>
+
+            <div class="menu-tabs">
+                <button class="tab-btn active" onclick="filterMenu('cafe', this)">☕ Café</button>
+                <button class="tab-btn" onclick="filterMenu('dulce', this)">🥐 Dulce</button>
+                <button class="tab-btn" onclick="filterMenu('salado', this)">🥯 Salado</button>
+            </div>
+
+            <div class="menu-grid" id="menu-container">
+                <div class="product-card reveal show" data-cat="cafe">
+                    <div class="price-tag">$4.50</div>
+                    <span style="font-size: 4rem; display: block; margin-bottom: 1rem;">☕</span>
+                    <h3>Flat White Clay</h3>
+                    <p style="margin: 1rem 0; opacity: 0.7;">Sedosa micro-espuma sobre espresso intenso.</p>
+                    <button class="btn-squishy" style="width: 100%; padding: 0.8rem; font-size: 0.9rem;" onclick="addToCart('Flat White', 4.50, '☕')">Pedir Ahora</button>
+                </div>
+                <div class="product-card reveal show" data-cat="cafe">
+                    <div class="price-tag">$5.20</div>
+                    <span style="font-size: 4rem; display: block; margin-bottom: 1rem;">🧊</span>
+                    <h3>Iced Bloom</h3>
+                    <p style="margin: 1rem 0; opacity: 0.7;">Refrescante con notas de jazmín y miel.</p>
+                    <button class="btn-squishy" style="width: 100%; padding: 0.8rem; font-size: 0.9rem;" onclick="addToCart('Iced Bloom', 5.20, '🧊')">Pedir Ahora</button>
+                </div>
+                <div class="product-card reveal show" data-cat="cafe">
+                    <div class="price-tag">$4.80</div>
+                    <span style="font-size: 4rem; display: block; margin-bottom: 1rem;">☁️</span>
+                    <h3>Mocha Cloud</h3>
+                    <p style="margin: 1rem 0; opacity: 0.7;">Chocolate belga y espuma aterciopelada.</p>
+                    <button class="btn-squishy" style="width: 100%; padding: 0.8rem; font-size: 0.9rem;" onclick="addToCart('Mocha Cloud', 4.80, '☁️')">Pedir Ahora</button>
+                </div>
+
+                <div class="product-card reveal" data-cat="dulce">
+                    <div class="price-tag">$3.90</div>
+                    <span style="font-size: 4rem; display: block; margin-bottom: 1rem;">🍩</span>
+                    <h3>Donut Inflado</h3>
+                    <p style="margin: 1rem 0; opacity: 0.7;">Glaseado de caramelo y escamas de sal.</p>
+                    <button class="btn-squishy" style="width: 100%; padding: 0.8rem; font-size: 0.9rem;" onclick="addToCart('Donut', 3.90, '🍩')">Pedir Ahora</button>
+                </div>
+                <div class="product-card reveal" data-cat="dulce">
+                    <div class="price-tag">$4.50</div>
+                    <span style="font-size: 4rem; display: block; margin-bottom: 1rem;">🥐</span>
+                    <h3>Croissant Miel</h3>
+                    <p style="margin: 1rem 0; opacity: 0.7;">Hojaldre crujiente bañado en miel pura.</p>
+                    <button class="btn-squishy" style="width: 100%; padding: 0.8rem; font-size: 0.9rem;" onclick="addToCart('Croissant', 4.50, '🥐')">Pedir Ahora</button>
+                </div>
+                <div class="product-card reveal" data-cat="dulce">
+                    <div class="price-tag">$3.20</div>
+                    <span style="font-size: 4rem; display: block; margin-bottom: 1rem;">🍪</span>
+                    <h3>Choco Cookie</h3>
+                    <p style="margin: 1rem 0; opacity: 0.7;">Galleta suave con trozos de chocolate negro.</p>
+                    <button class="btn-squishy" style="width: 100%; padding: 0.8rem; font-size: 0.9rem;" onclick="addToCart('Cookie', 3.20, '🍪')">Pedir Ahora</button>
+                </div>
+
+                <div class="product-card reveal" data-cat="salado">
+                    <div class="price-tag">$8.50</div>
+                    <span style="font-size: 4rem; display: block; margin-bottom: 1rem;">🥑</span>
+                    <h3>Toast Aguacate</h3>
+                    <p style="margin: 1rem 0; opacity: 0.7;">Masa madre con crema de aguacate y lima.</p>
+                    <button class="btn-squishy" style="width: 100%; padding: 0.8rem; font-size: 0.9rem;" onclick="addToCart('Toast Aguacate', 8.50, '🥑')">Pedir Ahora</button>
+                </div>
+                <div class="product-card reveal" data-cat="salado">
+                    <div class="price-tag">$7.90</div>
+                    <span style="font-size: 4rem; display: block; margin-bottom: 1rem;">🥯</span>
+                    <h3>Bagel Creamy</h3>
+                    <p style="margin: 1rem 0; opacity: 0.7;">Queso crema, salmón ahumado y eneldo.</p>
+                    <button class="btn-squishy" style="width: 100%; padding: 0.8rem; font-size: 0.9rem;" onclick="addToCart('Bagel', 7.90, '🥯')">Pedir Ahora</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div style="text-align: center;">
+                <h2 style="font-size: 3rem; text-shadow: var(--text-3d);">Amantes del Bloom</h2>
+                <p style="opacity: 0.7;">¿Qué dicen nuestros clientes inflados?</p>
+            </div>
+            <div class="testi-grid">
+                <div class="testi-card reveal">
+                    <div class="avatar-3d">👧</div>
+                    <p style="font-style: italic; margin-bottom: 1rem;">"Es la cafetería más bonita de Madrid. El Mocha es como beber una nube."</p>
+                    <h4 style="font-weight: 900;">Sofía R.</h4>
+                </div>
+                <div class="testi-card reveal" style="transition-delay: 0.2s;">
+                    <div class="avatar-3d">👦</div>
+                    <p style="font-style: italic; margin-bottom: 1rem;">"El diseño 3D de las tazas es real, todo se siente premium y muy acogedor."</p>
+                    <h4 style="font-weight: 900;">Mateo G.</h4>
+                </div>
+                <div class="testi-card reveal" style="transition-delay: 0.4s;">
+                    <div class="avatar-3d">👩</div>
+                    <p style="font-style: italic; margin-bottom: 1rem;">"Los mejores bagels que he probado jamás. ¡Volveré cada mañana!"</p>
+                    <h4 style="font-weight: 900;">Laura V.</h4>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Bloom.</h2>
+        <p style="opacity: 0.6; margin-bottom: 3rem;">Haciendo tu día un poco más inflado y colorido.</p>
+        <div style="display: flex; justify-content: center; gap: 3rem; font-weight: 700; opacity: 0.5;">
+            <span>Instagram</span>
+            <span>TikTok</span>
+            <span>Pinterest</span>
+        </div>
+        <p style="margin-top: 4rem; font-size: 0.8rem; opacity: 0.3;">&copy; 2024 Café Bloom Ultra Master Edition.</p>
+    </footer>
+
+    <script>
+        let cart = [];
+        const cartDrawer = document.getElementById('cart-drawer');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartCountBadge = document.getElementById('cart-count');
+        const cartTotalSpan = document.getElementById('cart-total');
+
+        function toggleCart() {
+            cartDrawer.classList.toggle('open');
+        }
+
+        function addToCart(name, price, emoji) {
+            cart.push({ name, price, emoji });
+            updateCartUI();
+            cartCountBadge.classList.add('bump');
+            setTimeout(() => cartCountBadge.classList.remove('bump'), 300);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            cartCountBadge.innerText = cart.length;
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="text-align: center; opacity: 0.5;">Tu carrito está vacío ☕</p>';
+                cartTotalSpan.innerText = '$0.00';
+                return;
+            }
+            let total = 0;
+            cartItemsContainer.innerHTML = '';
+            cart.forEach((item, index) => {
+                total += item.price;
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <span style="font-size: 1.5rem;">${item.emoji}</span>
+                    <div style="flex-grow: 1;">
+                        <div style="font-weight: 700;">${item.name}</div>
+                        <div style="opacity: 0.6; font-size: 0.9rem;">$${item.price.toFixed(2)}</div>
+                    </div>
+                    <button onclick="removeFromCart(${index})" style="background: none; border: none; cursor: pointer; color: var(--error);">✕</button>
+                `;
+                cartItemsContainer.appendChild(div);
+            });
+            cartTotalSpan.innerText = `$${total.toFixed(2)}`;
+        }
+
+        function filterMenu(category, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.classList.toggle('show', card.dataset.cat === category);
+            });
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+            document.querySelectorAll('.floating-clay').forEach(deco => {
+                deco.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
