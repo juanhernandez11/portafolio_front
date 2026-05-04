@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#63b3ed"/>
+      <stop offset="100%" stop-color="#68d391"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="64" height="64" rx="12" fill="#0a0f1a"/>
+
+  <!-- Glow -->
+  <text x="32" y="46" font-family="'Nunito', 'Futura', 'Century Gothic', sans-serif" font-size="36" font-weight="900"
+        fill="#63b3ed" text-anchor="middle" opacity="0.3" filter="url(#glow)">{J}</text>
+
+  <!-- {J} principal -->
+  <text x="32" y="46" font-family="'Nunito', 'Futura', 'Century Gothic', sans-serif" font-size="36" font-weight="900"
+        fill="url(#g)" text-anchor="middle">{J}</text>
+</svg>
