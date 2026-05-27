@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="cursor-dot" id="cursor-dot"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
 
 <!-- INTRO -->
 <div id="netflix-intro">
@@ -143,20 +145,44 @@
 
     <!-- SKILLS -->
     <section id="skills" class="section-dark">
-        <h2 class="sec-title">Habilidades Técnicas</h2>
-        <div class="skills-grid">
-            <div class="skill-card reveal"><div class="skill-icon">⚛️</div><h3>React</h3><p>Hooks · Context API · State Management</p></div>
-            <div class="skill-card reveal"><div class="skill-icon">🅰️</div><h3>Angular</h3><p>TypeScript · RxJS · Components</p></div>
-            <div class="skill-card reveal"><div class="skill-icon">💚</div><h3>Vue.js</h3><p>Composition API · Pinia · Routing</p></div>
-            <div class="skill-card reveal"><div class="skill-icon">🟨</div><h3>JavaScript</h3><p>ES6+ · DOM · Async/Await</p></div>
-            <div class="skill-card reveal"><div class="skill-icon">🔷</div><h3>TypeScript</h3><p>Types · Interfaces · Generics</p></div>
-            <div class="skill-card reveal"><div class="skill-icon">🟢</div><h3>Node.js</h3><p>Express · REST APIs · Middleware</p></div>
-            <div class="skill-card reveal"><div class="skill-icon">🍃</div><h3>MongoDB</h3><p>NoSQL · Aggregation · Indexing</p></div>
-            <div class="skill-card reveal"><div class="skill-icon">🐬</div><h3>MySQL</h3><p>SQL · Queries · Database Design</p></div>
-            <div class="skill-card reveal"><div class="skill-icon">🐙</div><h3>Git & GitHub</h3><p>Version Control · Branching · CI/CD</p></div>
-            <div class="skill-card reveal"><div class="skill-icon">📱</div><h3>Responsive Design</h3><p>Mobile-First · Grid · Flexbox</p></div>
-            <div class="skill-card reveal"><div class="skill-icon">⚡</div><h3>Performance</h3><p>Lighthouse · Lazy Loading · SEO</p></div>
-            <div class="skill-card reveal"><div class="skill-icon">🔥</div><h3>Firebase</h3><p>Auth · Firestore · Hosting</p></div>
+        <h2 class="sec-title">Stack Técnico</h2>
+        <div class="skills-groups">
+            <div class="skill-group reveal">
+                <h4 class="skill-group-title">Frontend</h4>
+                <div class="skill-tags">
+                    <span class="stag stag-primary">React</span>
+                    <span class="stag stag-primary">Angular</span>
+                    <span class="stag stag-primary">Vue.js</span>
+                    <span class="stag stag-primary">TypeScript</span>
+                    <span class="stag stag-primary">JavaScript ES6+</span>
+                    <span class="stag stag-primary">HTML5</span>
+                    <span class="stag stag-primary">CSS3</span>
+                    <span class="stag stag-primary">Responsive Design</span>
+                </div>
+            </div>
+            <div class="skill-group reveal">
+                <h4 class="skill-group-title">Backend & DB</h4>
+                <div class="skill-tags">
+                    <span class="stag stag-secondary">Node.js</span>
+                    <span class="stag stag-secondary">Express</span>
+                    <span class="stag stag-secondary">REST APIs</span>
+                    <span class="stag stag-secondary">Firebase</span>
+                    <span class="stag stag-secondary">MongoDB</span>
+                    <span class="stag stag-secondary">MySQL</span>
+                    <span class="stag stag-secondary">PHP</span>
+                </div>
+            </div>
+            <div class="skill-group reveal">
+                <h4 class="skill-group-title">Tooling & Workflow</h4>
+                <div class="skill-tags">
+                    <span class="stag stag-muted">Git & GitHub</span>
+                    <span class="stag stag-muted">Netlify</span>
+                    <span class="stag stag-muted">Performance</span>
+                    <span class="stag stag-muted">SEO</span>
+                    <span class="stag stag-muted">Accesibilidad</span>
+                    <span class="stag stag-muted">MVC</span>
+                </div>
+            </div>
         </div>
     </section>
 

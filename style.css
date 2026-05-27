@@ -1,3 +1,30 @@
+/* ─── CURSOR PERSONALIZADO ──────────────────── */
+.cursor-dot {
+    position:fixed;
+    width:8px; height:8px;
+    background:#63b3ed;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:99999;
+    transform:translate(-50%,-50%);
+    transition:transform 0.1s ease, background 0.2s ease;
+    box-shadow:0 0 10px rgba(99,179,237,0.8);
+}
+.cursor-ring {
+    position:fixed;
+    width:32px; height:32px;
+    border:1.5px solid rgba(99,179,237,0.5);
+    border-radius:50%;
+    pointer-events:none;
+    z-index:99998;
+    transform:translate(-50%,-50%);
+    transition:transform 0.12s ease, width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+}
+body:has(a:hover) .cursor-dot,
+body:has(button:hover) .cursor-dot { background:#68d391; transform:translate(-50%,-50%) scale(1.5); }
+body:has(a:hover) .cursor-ring,
+body:has(button:hover) .cursor-ring { width:48px; height:48px; border-color:rgba(104,211,145,0.6); }
+
 /* ─── RESET ─────────────────────────────────── */
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
@@ -6,6 +33,7 @@ body {
     background:#050709;
     color:#f0f6fc;
     overflow-x:hidden;
+    cursor:none;
 }
 ::-webkit-scrollbar { width:8px; }
 ::-webkit-scrollbar-track { background:#0a0a0a; }
@@ -491,6 +519,49 @@ section:not(#hero) {
     margin-top: 8px;
 }
 
+/* ─── SKILLS GRUPOS ─────────────────────────── */
+.skills-groups {
+    display:flex;
+    flex-direction:column;
+    gap:40px;
+    max-width:900px;
+}
+.skill-group-title {
+    font-size:0.75rem;
+    font-weight:700;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:#484f58;
+    margin-bottom:16px;
+}
+.skill-tags { display:flex; flex-wrap:wrap; gap:10px; }
+.stag {
+    padding:8px 18px;
+    border-radius:6px;
+    font-size:0.88rem;
+    font-weight:600;
+    transition:all 0.2s ease;
+    cursor:default;
+}
+.stag-primary {
+    background:rgba(99,179,237,0.1);
+    border:1px solid rgba(99,179,237,0.25);
+    color:#63b3ed;
+}
+.stag-primary:hover { background:rgba(99,179,237,0.2); border-color:rgba(99,179,237,0.5); transform:translateY(-2px); }
+.stag-secondary {
+    background:rgba(104,211,145,0.08);
+    border:1px solid rgba(104,211,145,0.2);
+    color:#68d391;
+}
+.stag-secondary:hover { background:rgba(104,211,145,0.15); border-color:rgba(104,211,145,0.4); transform:translateY(-2px); }
+.stag-muted {
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08);
+    color:#8b949e;
+}
+.stag-muted:hover { background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.15); transform:translateY(-2px); color:#f0f6fc; }
+
 /* ─── SKILLS ─────────────────────────────────── */
 .skills-grid {
     display:grid;
@@ -544,6 +615,8 @@ section:not(#hero) {
     border-radius:12px;
     overflow:hidden;
     transition:all 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+    transform-style:preserve-3d;
+    will-change:transform;
 }
 .proj-card:hover {
     transform:translateY(-10px) scale(1.01);
