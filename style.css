@@ -348,15 +348,38 @@ body {
     50%      { opacity:0.5; transform:scale(0.7); }
 }
 
+/* ─── DOT GRID HERO ────────────────────────── */
+.hero-dot-grid {
+    position:absolute; inset:0;
+    background-image: radial-gradient(rgba(99,179,237,0.15) 1px, transparent 1px);
+    background-size: 32px 32px;
+    z-index:0;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    animation: dotPulse 8s ease-in-out infinite;
+}
+@keyframes dotPulse {
+    0%,100% { opacity:0.4; }
+    50%      { opacity:0.8; }
+}
+
+/* ─── GRADIENT TEXT ANIMADO ─────────────────── */
 .hero-content h1 {
     font-size:clamp(2.8rem,6vw,5.5rem);
     font-weight:900;
     line-height:1.1;
     margin-bottom:20px;
-    background:linear-gradient(135deg,#fff 40%,#63b3ed 100%);
+    background: linear-gradient(135deg, #fff 0%, #63b3ed 50%, #68d391 100%);
+    background-size: 200% 200%;
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
     background-clip:text;
+    animation: gradientShift 6s ease infinite;
+}
+@keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 .hero-content h1 span { display:block; }
 
@@ -792,6 +815,18 @@ section:not(#hero) {
 .contact-links a:hover { color:#63b3ed; }
 
 /* ─── FOOTER ─────────────────────────────────── */
+/* ─── PROGRESS BAR ────────────────────────── */
+.progress-bar {
+    position:fixed;
+    top:0; left:0;
+    height:2px;
+    background:linear-gradient(90deg, #63b3ed, #68d391);
+    z-index:99997;
+    width:0%;
+    transition:width 0.1s linear;
+    box-shadow:0 0 8px rgba(99,179,237,0.6);
+}
+
 footer {
     background:#0a0a0a;
     padding:28px;
