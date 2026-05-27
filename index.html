@@ -3,8 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juan Ramon Moreno Bravo | Desarrollador Frontend</title>
+    <title>Juan Ramon Moreno Bravo | Frontend Engineer</title>
+    <meta name="description" content="Frontend Engineer especializado en React, Angular y Vue.js. Construyo interfaces rápidas, accesibles y visualmente memorables. Disponible para empleo y proyectos freelance.">
+    <meta name="keywords" content="Frontend Engineer, React, Angular, Vue.js, JavaScript, TypeScript, Node.js, desarrollo web, México">
+    <meta name="author" content="Juan Ramon Moreno Bravo">
+    <meta property="og:title" content="Juan Ramon Moreno Bravo | Frontend Engineer">
+    <meta property="og:description" content="Construyo interfaces que los usuarios no olvidan. Frontend Engineer con React, Angular y Vue.js.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="foto/9571 - DIGITAL.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Juan Ramon Moreno Bravo | Frontend Engineer">
+    <meta name="twitter:description" content="Construyo interfaces que los usuarios no olvidan.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,7 +28,7 @@
     <button class="skip-btn" id="skip-btn">Saltar ▶</button>
 </div>
 
-<!-- MENÚ FLOTANTE — fuera de todo para que no herede estilos -->
+<!-- MENÚ FLOTANTE -->
 <div class="float-menu" id="float-menu">
     <button class="float-close" id="float-close">✕</button>
     <ul>
@@ -57,13 +70,14 @@
         <canvas id="code-canvas"></canvas>
         <div class="hero-overlay"></div>
         <div class="hero-content" id="hero-content">
-            <p class="hero-tag">Disponible para trabajar</p>
-            <h1>Juan Ramon<br><span>Moreno Bravo</span></h1>
-            <p class="hero-sub">Desarrollador Frontend · React · Angular · Vue.js</p>
+            <p class="hero-tag"><span class="hero-tag-dot"></span> Disponible · Remote · México</p>
+            <h1>Construyo interfaces<br><span>que los usuarios<br>no olvidan.</span></h1>
+            <p class="hero-sub">Frontend Engineer · React · Angular · Vue.js<br>Transformo ideas complejas en productos digitales rápidos y memorables.</p>
             <div class="hero-stats">
-                <div><strong>8+</strong><span>Proyectos</span></div>
-                <div><strong>35%</strong><span>Mejora rendimiento</span></div>
-                <div><strong>20%</strong><span>Mejora eficiencia</span></div>
+                <div><strong class="counter" data-target="8">0</strong><span>Proyectos</span></div>
+                <div><strong class="counter" data-target="35">0</strong><span>% Rendimiento</span></div>
+                <div><strong class="counter" data-target="20">0</strong><span>% Eficiencia</span></div>
+                <div><strong class="counter" data-target="3">0</strong><span>Años exp.</span></div>
             </div>
             <div class="hero-btns">
                 <a href="#projects" class="btn-red">Ver Proyectos</a>
@@ -77,11 +91,11 @@
                 </a>
             </div>
             <div class="hero-social">
-                <a href="https://github.com/juanhernandez11" target="_blank">
+                <a href="https://github.com/juanhernandez11" target="_blank" rel="noopener noreferrer">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
                     GitHub
                 </a>
-                <a href="https://www.linkedin.com/in/juan-ramon-moreno-bravo-0830b1271/" target="_blank">
+                <a href="https://www.linkedin.com/in/juan-ramon-moreno-bravo-0830b1271/" target="_blank" rel="noopener noreferrer">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.48-2.24-1.99-2.24-1.08 0-1.72.72-2 1.42-.1.25-.13.6-.13.95v5.44h-3.55V9.72h3.55v1.38c.43-.66 1.19-1.6 2.9-1.6 2.12 0 3.7 1.38 3.7 4.36v6.59zM5.34 8.86a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 11.59H3.56V9.72h3.56v10.73zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.27V1.73C24 .77 23.2 0 22.22 0z"/></svg>
                     LinkedIn
                 </a>
@@ -104,9 +118,9 @@
             </div>
             <div class="about-text reveal">
                 <h2 class="sec-title">Sobre mí</h2>
-                <p class="about-desc">Soy <strong>Juan Ramon Moreno Bravo</strong>, desarrollador de software con enfoque en frontend y experiencia construyendo aplicaciones web modernas con <strong>React, Angular y Vue.js</strong>.</p>
-                <p class="about-desc">Me apasiona crear interfaces rápidas, accesibles y visualmente atractivas. He trabajado en proyectos profesionales, freelance y personales que van desde sistemas de inventario hasta aplicaciones con <strong>inteligencia artificial integrada</strong>.</p>
-                <p class="about-desc">Actualmente en búsqueda de nuevas oportunidades donde pueda aportar valor, seguir creciendo y trabajar en equipo para construir productos de impacto.</p>
+                <p class="about-desc">Soy <strong>Juan Ramon Moreno Bravo</strong>, Frontend Engineer con enfoque en producto y experiencia construyendo interfaces que combinan rendimiento técnico con diseño de alto impacto.</p>
+                <p class="about-desc">Trabajo con <strong>React, Angular y Vue.js</strong> para resolver problemas reales — desde sistemas que redujeron tiempos de gestión un <strong>20%</strong>, hasta plataformas con <strong>IA integrada</strong> en producción.</p>
+                <p class="about-desc">No solo escribo código. Entiendo el negocio, optimizo la experiencia del usuario y entrego productos que funcionan. Actualmente buscando mi próximo reto en un equipo que construya productos que importen.</p>
                 <div class="about-chips">
                     <span>📍 Tehuacán, Puebla</span>
                     <span>💼 Disponible para trabajar</span>
@@ -135,14 +149,14 @@
             <div class="skill-card reveal"><div class="skill-icon">🅰️</div><h3>Angular</h3><p>TypeScript · RxJS · Components</p></div>
             <div class="skill-card reveal"><div class="skill-icon">💚</div><h3>Vue.js</h3><p>Composition API · Pinia · Routing</p></div>
             <div class="skill-card reveal"><div class="skill-icon">🟨</div><h3>JavaScript</h3><p>ES6+ · DOM · Async/Await</p></div>
+            <div class="skill-card reveal"><div class="skill-icon">🔷</div><h3>TypeScript</h3><p>Types · Interfaces · Generics</p></div>
             <div class="skill-card reveal"><div class="skill-icon">🟢</div><h3>Node.js</h3><p>Express · REST APIs · Middleware</p></div>
             <div class="skill-card reveal"><div class="skill-icon">🍃</div><h3>MongoDB</h3><p>NoSQL · Aggregation · Indexing</p></div>
             <div class="skill-card reveal"><div class="skill-icon">🐬</div><h3>MySQL</h3><p>SQL · Queries · Database Design</p></div>
-            <div class="skill-card reveal"><div class="skill-icon">🐘</div><h3>PHP</h3><p>MVC · OOP · Backend</p></div>
-            <div class="skill-card reveal"><div class="skill-icon">☕</div><h3>Java</h3><p>Swing · Desktop Apps · OOP</p></div>
-            <div class="skill-card reveal"><div class="skill-icon">🐙</div><h3>Git & GitHub</h3><p>Version Control · CI/CD</p></div>
+            <div class="skill-card reveal"><div class="skill-icon">🐙</div><h3>Git & GitHub</h3><p>Version Control · Branching · CI/CD</p></div>
             <div class="skill-card reveal"><div class="skill-icon">📱</div><h3>Responsive Design</h3><p>Mobile-First · Grid · Flexbox</p></div>
-            <div class="skill-card reveal"><div class="skill-icon">⚡</div><h3>Performance</h3><p>Optimization · Lazy Loading</p></div>
+            <div class="skill-card reveal"><div class="skill-icon">⚡</div><h3>Performance</h3><p>Lighthouse · Lazy Loading · SEO</p></div>
+            <div class="skill-card reveal"><div class="skill-icon">🔥</div><h3>Firebase</h3><p>Auth · Firestore · Hosting</p></div>
         </div>
     </section>
 
@@ -153,18 +167,37 @@
             <button class="f-btn active" data-filter="all">Todos</button>
             <button class="f-btn" data-filter="professional">Profesional</button>
             <button class="f-btn" data-filter="freelance">Freelance</button>
-            <button class="f-btn" data-filter="backend">Backend</button>
             <button class="f-btn" data-filter="personal">Personal</button>
         </div>
         <div class="projects-grid" id="projects-grid">
 
-            <div class="proj-card reveal" data-category="professional">
-                <div class="proj-top" style="background:linear-gradient(135deg,#667eea,#764ba2)"><span>📊</span></div>
+            <div class="proj-card reveal" data-category="personal">
+                <div class="proj-top" style="background:linear-gradient(135deg,#6a11cb,#2575fc)"><span>🎓</span></div>
                 <div class="proj-body">
-                    <h3>Sistema de Inventario (MVC)</h3>
-                    <p>Sistema web administrativo con arquitectura MVC para gestión de inventarios</p>
-                    <div class="proj-tags"><span>PHP</span><span>MySQL</span><span>MVC</span></div>
-                    <div class="proj-meta"><span class="badge-red">20% mejora eficiencia</span><a href="https://github.com/juanhernandez11/inventario.mvc" target="_blank">GitHub →</a></div>
+                    <h3>Estudio Genius</h3>
+                    <p>Plataforma académica con autenticación, gestión de tareas y asistente con IA integrada en producción</p>
+                    <div class="proj-tags"><span>React</span><span>TypeScript</span><span>Firebase</span><span>Gemini AI</span></div>
+                    <div class="proj-meta"><span class="badge-red">IA en producción</span><a href="https://estudiogenius.netlify.app/" target="_blank" rel="noopener noreferrer">Demo →</a></div>
+                </div>
+            </div>
+
+            <div class="proj-card reveal" data-category="professional">
+                <div class="proj-top" style="background:linear-gradient(135deg,#0f2027,#203a43,#2c5364)"><span>🔒</span></div>
+                <div class="proj-body">
+                    <h3>Canal de Denuncias — ARH</h3>
+                    <p>Plataforma corporativa funcional para gestión de denuncias con diseño accesible, desplegada en producción</p>
+                    <div class="proj-tags"><span>WordPress</span><span>UX/UI</span><span>Accesibilidad</span></div>
+                    <div class="proj-meta"><span class="badge-gray">En producción</span><a href="https://denunciasarhconsultores.netlify.app/" target="_blank" rel="noopener noreferrer">Demo →</a></div>
+                </div>
+            </div>
+
+            <div class="proj-card reveal" data-category="professional">
+                <div class="proj-top" style="background:linear-gradient(135deg,#ffecd2,#fcb69f)"><span>🚘</span></div>
+                <div class="proj-body">
+                    <h3>Sistema de Aparcamiento</h3>
+                    <p>Sistema integral de gestión: espacios, vehículos, pagos y panel de administración completo</p>
+                    <div class="proj-tags"><span>Java</span><span>Swing</span><span>Desktop</span></div>
+                    <div class="proj-meta"><span class="badge-gray">May–Ago 2025</span><a href="https://github.com/juanhernandez11/sistema_aparcamiento" target="_blank" rel="noopener noreferrer">GitHub →</a></div>
                 </div>
             </div>
 
@@ -174,37 +207,7 @@
                     <h3>Café Bloom — Landing 3D</h3>
                     <p>Landing page con estética clay 3D, carrito interactivo, filtros de menú y modo tarde/mañana</p>
                     <div class="proj-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-                    <div class="proj-meta"><a href="cafe-bloom/index.html" target="_blank">Demo →</a></div>
-                </div>
-            </div>
-
-            <div class="proj-card reveal" data-category="freelance">
-                <div class="proj-top" style="background:linear-gradient(135deg,#f093fb,#f5576c)"><span>🌐</span></div>
-                <div class="proj-body">
-                    <h3>Sitio Web Servicios Tech</h3>
-                    <p>Landing profesional con deployment real para empresa de servicios tecnológicos</p>
-                    <div class="proj-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-                    <div class="proj-meta"><a href="https://freeservicios.netlify.app/" target="_blank">Demo →</a></div>
-                </div>
-            </div>
-
-            <div class="proj-card reveal" data-category="backend">
-                <div class="proj-top" style="background:linear-gradient(135deg,#4facfe,#00f2fe)"><span>🗄️</span></div>
-                <div class="proj-body">
-                    <h3>CRUD con MongoDB</h3>
-                    <p>Operaciones CRUD completas con MongoDB y Node.js, API REST funcional</p>
-                    <div class="proj-tags"><span>Node.js</span><span>MongoDB</span><span>NoSQL</span></div>
-                    <div class="proj-meta"><span class="badge-gray">Backend</span></div>
-                </div>
-            </div>
-
-            <div class="proj-card reveal" data-category="personal">
-                <div class="proj-top" style="background:linear-gradient(135deg,#43e97b,#38f9d7)"><span>🌤️</span></div>
-                <div class="proj-body">
-                    <h3>App del Clima (Angular)</h3>
-                    <p>Aplicación con Angular consumiendo API REST de clima en tiempo real</p>
-                    <div class="proj-tags"><span>Angular</span><span>TypeScript</span><span>API REST</span></div>
-                    <div class="proj-meta"><span class="badge-gray">Personal</span></div>
+                    <div class="proj-meta"><a href="cafe-bloom/index.html" target="_blank" rel="noopener noreferrer">Demo →</a></div>
                 </div>
             </div>
 
@@ -214,7 +217,27 @@
                     <h3>Nike Store — Vue.js</h3>
                     <p>E-commerce con carrito interactivo, filtros de productos y diseño responsivo</p>
                     <div class="proj-tags"><span>Vue 3</span><span>JavaScript</span><span>CSS</span></div>
-                    <div class="proj-meta"><a href="https://quiet-jalebi-cff2cf.netlify.app/" target="_blank">Demo →</a></div>
+                    <div class="proj-meta"><a href="https://quiet-jalebi-cff2cf.netlify.app/" target="_blank" rel="noopener noreferrer">Demo →</a></div>
+                </div>
+            </div>
+
+            <div class="proj-card reveal" data-category="professional">
+                <div class="proj-top" style="background:linear-gradient(135deg,#667eea,#764ba2)"><span>📊</span></div>
+                <div class="proj-body">
+                    <h3>Sistema de Inventario (MVC)</h3>
+                    <p>Sistema web administrativo con arquitectura MVC. Redujo tiempos de gestión un 20%</p>
+                    <div class="proj-tags"><span>PHP</span><span>MySQL</span><span>MVC</span></div>
+                    <div class="proj-meta"><span class="badge-red">20% eficiencia</span><a href="https://github.com/juanhernandez11/inventario.mvc" target="_blank" rel="noopener noreferrer">GitHub →</a></div>
+                </div>
+            </div>
+
+            <div class="proj-card reveal" data-category="freelance">
+                <div class="proj-top" style="background:linear-gradient(135deg,#f093fb,#f5576c)"><span>🌐</span></div>
+                <div class="proj-body">
+                    <h3>Sitio Web Servicios Tech</h3>
+                    <p>Landing profesional con deployment real para empresa de servicios tecnológicos</p>
+                    <div class="proj-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+                    <div class="proj-meta"><a href="https://freeservicios.netlify.app/" target="_blank" rel="noopener noreferrer">Demo →</a></div>
                 </div>
             </div>
 
@@ -224,47 +247,7 @@
                     <h3>App de Presupuesto</h3>
                     <p>Gestión de ingresos y gastos personales con estadísticas visuales</p>
                     <div class="proj-tags"><span>JavaScript</span><span>HTML</span><span>CSS</span></div>
-                    <div class="proj-meta"><a href="https://app-presupuesto-jrmb.netlify.app" target="_blank">Demo →</a></div>
-                </div>
-            </div>
-
-            <div class="proj-card reveal" data-category="professional">
-                <div class="proj-top" style="background:linear-gradient(135deg,#0f2027,#203a43,#2c5364)"><span>🔒</span></div>
-                <div class="proj-body">
-                    <h3>Canal de Denuncias — ARH Consultores</h3>
-                    <p>Plataforma web funcional para recepción y gestión de denuncias corporativas, con diseño accesible y formulario seguro</p>
-                    <div class="proj-tags"><span>WordPress</span><span>UX/UI</span><span>Accesibilidad</span></div>
-                    <div class="proj-meta"><span class="badge-gray">Feb 2026 — Actual</span><a href="https://denunciasarhconsultores.netlify.app/" target="_blank">Demo →</a></div>
-                </div>
-            </div>
-
-            <div class="proj-card reveal" data-category="professional">
-                <div class="proj-top" style="background:linear-gradient(135deg,#ffecd2,#fcb69f)"><span>🚘</span></div>
-                <div class="proj-body">
-                    <h3>Sistema de Aparcamiento</h3>
-                    <p>Sistema integral para gestión de estacionamientos: espacios, vehículos, pagos y panel de administración</p>
-                    <div class="proj-tags"><span>Java</span><span>Swing</span><span>Desktop</span></div>
-                    <div class="proj-meta"><span class="badge-gray">May–Ago 2025</span><a href="https://github.com/juanhernandez11/sistema_aparcamiento" target="_blank">GitHub →</a></div>
-                </div>
-            </div>
-
-            <div class="proj-card reveal" data-category="personal">
-                <div class="proj-top" style="background:linear-gradient(135deg,#6a11cb,#2575fc)"><span>🎓</span></div>
-                <div class="proj-body">
-                    <h3>Estudio Genius</h3>
-                    <p>App web para organización académica: tareas, actividades, autenticación y asistente con IA integrada</p>
-                    <div class="proj-tags"><span>React</span><span>TypeScript</span><span>Firebase</span><span>Gemini IA</span></div>
-                    <div class="proj-meta"><span class="badge-red">IA integrada</span><a href="https://estudiogenius.netlify.app/" target="_blank">Demo →</a></div>
-                </div>
-            </div>
-
-            <div class="proj-card reveal" data-category="personal">
-                <div class="proj-top" style="background:linear-gradient(135deg,#ff9a9e,#fecfef)"><span>🎹</span></div>
-                <div class="proj-body">
-                    <h3>Piano Interactivo</h3>
-                    <p>Piano virtual con notas musicales interactivas y soporte de teclado</p>
-                    <div class="proj-tags"><span>JavaScript</span><span>Audio API</span><span>HTML</span></div>
-                    <div class="proj-meta"><a href="https://pianojrmb.netlify.app" target="_blank">Demo →</a></div>
+                    <div class="proj-meta"><a href="https://app-presupuesto-jrmb.netlify.app" target="_blank" rel="noopener noreferrer">Demo →</a></div>
                 </div>
             </div>
 
@@ -281,32 +264,16 @@
                 <div class="tl-card">
                     <span class="tl-date">Feb 2026 — Actualidad</span>
                     <span class="tl-badge">Actual</span>
-                    <h3>Becario — Especialista de Optimización Web</h3>
+                    <h3>Especialista de Optimización Web</h3>
                     <p class="tl-company">ARH Consultores · Jóvenes Construyendo el Futuro · Tehuacán, Puebla</p>
                     <ul class="tl-list">
-                        <li>Rediseño completo de <a href="https://arhconsultores.com/" target="_blank">arhconsultores.com</a> y <a href="https://arhbusinessconsulting.com/" target="_blank">arhbusinessconsulting.com</a>: nueva estructura visual, tipografía y paleta de colores</li>
-                        <li>Optimización de rendimiento: compresión de imágenes, minificación de CSS/JS y reducción de plugins innecesarios</li>
-                        <li>Implementación de mejoras SEO on-page (encabezados, metadatos, keywords)</li>
-                        <li>Desarrollo y despliegue de canal de denuncias corporativo funcional</li>
-                        <li>Integración de plugins de accesibilidad para usuarios con visibilidad reducida</li>
-                        <li>Configuración de atajos de teclado para navegación sin ratón</li>
-                        <li>Mejoras estéticas generales de UX: espaciado, contraste y jerarquía visual</li>
+                        <li>Rediseño completo de <a href="https://arhconsultores.com/" target="_blank" rel="noopener noreferrer">arhconsultores.com</a> y <a href="https://arhbusinessconsulting.com/" target="_blank" rel="noopener noreferrer">arhbusinessconsulting.com</a></li>
+                        <li>Optimización de rendimiento: compresión de imágenes, minificación CSS/JS, reducción de plugins</li>
+                        <li>Desarrollo y despliegue de canal de denuncias corporativo funcional en producción</li>
+                        <li>Implementación de plugins de accesibilidad y atajos de teclado para usuarios con visibilidad reducida</li>
+                        <li>Mejoras SEO on-page: encabezados, metadatos y estructura semántica</li>
                     </ul>
                     <p class="tl-logro">🏆 Mejora significativa en tiempos de carga, accesibilidad y posicionamiento orgánico</p>
-                </div>
-            </div>
-
-            <div class="tl-item reveal">
-                <div class="tl-dot"></div>
-                <div class="tl-card">
-                    <span class="tl-date">Nov 2024 — Mar 2025</span>
-                    <h3>Auxiliar Técnico Instalador</h3>
-                    <p class="tl-company">Solit Wireless y Fibra Óptica · Tehuacán, Puebla</p>
-                    <ul class="tl-list">
-                        <li>Instalación y mantenimiento de equipos de telecomunicaciones</li>
-                        <li>Soporte técnico en infraestructura de red</li>
-                        <li>Garantía de calidad del servicio</li>
-                    </ul>
                 </div>
             </div>
 
@@ -317,9 +284,9 @@
                     <h3>Pasante de Informática</h3>
                     <p class="tl-company">Jurisdicción Sanitaria Núm. 10 · Tehuacán, Puebla</p>
                     <ul class="tl-list">
-                        <li>Desarrollo de sistema de control de inventarios</li>
-                        <li>Diseño de interfaces con HTML y CSS</li>
-                        <li>Elaboración de reportes en Excel y organización de datos administrativos</li>
+                        <li>Desarrollo de sistema de control de inventarios con HTML, CSS y lógica de negocio</li>
+                        <li>Automatización de reportes administrativos en Excel</li>
+                        <li>Organización y digitalización de datos institucionales</li>
                     </ul>
                     <p class="tl-logro">🏆 Automatización de procesos reduciendo tiempo de gestión en un <strong>20%</strong></p>
                 </div>
@@ -332,10 +299,9 @@
                     <h3>Desarrollador Web Freelance</h3>
                     <p class="tl-company">Independiente · Tehuacán, Puebla</p>
                     <ul class="tl-list">
-                        <li>Desarrollo de sitios web responsivos con HTML, CSS y JavaScript</li>
+                        <li>Desarrollo de sitios web responsivos para clientes reales con HTML, CSS y JavaScript</li>
                         <li>Implementación de bases de datos MySQL para contenido dinámico</li>
-                        <li>Optimización de interfaces con Bootstrap</li>
-                        <li>Gestión de entregables y cronogramas con clientes</li>
+                        <li>Gestión de entregables, cronogramas y comunicación directa con clientes</li>
                     </ul>
                     <p class="tl-logro">🏆 Reducción de tiempos de carga en un <strong>35%</strong> mediante optimización frontend</p>
                 </div>
@@ -347,19 +313,19 @@
     <!-- CONTACT -->
     <section id="contact" class="section-mid contact-center">
         <h2 class="sec-title sec-title--center">Hablemos</h2>
-        <p class="contact-sub">Estoy buscando nuevas oportunidades. ¡Contáctame!</p>
+        <p class="contact-sub">¿Tienes un proyecto o una oportunidad? Estoy disponible.</p>
         <a href="mailto:juanhernandezbravo750@gmail.com" class="btn-red btn-xl">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             Enviar un correo
         </a>
         <div class="contact-links">
-            <a href="https://github.com/juanhernandez11" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/in/juan-ramon-moreno-bravo-0830b1271/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/juanhernandez11" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/juan-ramon-moreno-bravo-0830b1271/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
     </section>
 
     <footer>
-        <p>© 2025 Juan Ramon Moreno Bravo · Desarrollador Frontend</p>
+        <p>© 2025 Juan Ramon Moreno Bravo · Frontend Engineer</p>
     </footer>
 
 </div><!-- /main -->

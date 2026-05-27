@@ -524,6 +524,33 @@ function initCodeCanvas() {
 }
 
 /* ═══════════════════════════════════════════════
+   CONTADOR ANIMADO
+═══════════════════════════════════════════════ */
+function initCounters() {
+    const counters = document.querySelectorAll('.counter');
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const target = parseInt(el.dataset.target);
+            const suffix = el.closest('.hero-stats div').querySelector('span').textContent.startsWith('%') ? '' : '+';
+            let current = 0;
+            const step = Math.ceil(target / 40);
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                el.textContent = current + suffix;
+            }, 30);
+            io.unobserve(el);
+        });
+    }, { threshold: 0.5 });
+    counters.forEach(c => io.observe(c));
+}
+
+/* ═══════════════════════════════════════════════
    PARALLAX + NAVBAR SCROLL
 ═══════════════════════════════════════════════ */
 window.addEventListener('scroll', () => {
@@ -600,6 +627,7 @@ function initHamburger() {
 ═══════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
     initHamburger();
+    initCounters();
 
     const btns  = document.querySelectorAll('.f-btn');
     const cards = document.querySelectorAll('.proj-card');
