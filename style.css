@@ -314,6 +314,17 @@ body {
         linear-gradient(180deg, rgba(0,0,0,.3) 0%, rgba(20,20,20,.7) 100%);
 }
 
+.hero-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 40% at 50% 0%, rgba(99,179,237,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 60% at 100% 100%, rgba(104,211,145,0.04) 0%, transparent 70%);
+    animation: glowShift 15s ease-in-out infinite;
+    z-index: 1;
+}
+
 .hero-content {
     position:relative; z-index:2;
     text-align:center;
@@ -350,17 +361,24 @@ body {
 
 /* ─── DOT GRID HERO ────────────────────────── */
 .hero-dot-grid {
-    position:absolute; inset:0;
+    position: absolute;
+    inset: 0;
     background-image: radial-gradient(rgba(99,179,237,0.15) 1px, transparent 1px);
     background-size: 32px 32px;
-    z-index:0;
+    z-index: 0;
     mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
     -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
     animation: dotPulse 8s ease-in-out infinite;
 }
+
 @keyframes dotPulse {
-    0%,100% { opacity:0.4; }
-    50%      { opacity:0.8; }
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 0.75; }
+}
+
+@keyframes glowShift {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
 }
 
 /* ─── GRADIENT TEXT ANIMADO ─────────────────── */
@@ -431,16 +449,59 @@ body {
 .btn-ghost:hover { background:rgba(255,255,255,.18); }
 
 .hero-social {
-    display:flex; gap:20px; justify-content:center;
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
+
 .hero-social a {
-    display:flex; align-items:center; gap:8px;
-    color:#888; text-decoration:none;
-    font-size:0.9rem;
-    transition:color 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(.4,0,.2,1);
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: 1px solid rgba(99,179,237,0.1);
+    background: rgba(99,179,237,0.02);
+    position: relative;
+    overflow: hidden;
 }
-.hero-social a svg { width:20px; height:20px; }
-.hero-social a:hover { color:#fff; transform:translateY(-2px); }
+
+.hero-social a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(99,179,237,0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.hero-social a:hover {
+    color: #63b3ed;
+    transform: translateY(-6px) scale(1.08);
+    border-color: rgba(99,179,237,0.4);
+    background: rgba(99,179,237,0.08);
+    box-shadow: 0 8px 24px rgba(99,179,237,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.hero-social a:hover::before {
+    opacity: 1;
+}
+
+.hero-social a svg {
+    width: 20px;
+    height: 20px;
+    transition: filter 0.3s ease;
+}
+
+.hero-social a:hover svg {
+    filter: drop-shadow(0 0 8px rgba(99,179,237,0.6));
+}
 
 /* Scroll hint */
 .scroll-hint {
@@ -617,6 +678,240 @@ section:not(#hero) {
     color: #484f58;
     border-top: 1px solid rgba(255,255,255,0.06);
     padding-top: 10px;
+}
+
+/* ─── FLIP CARD 3D PANINI STYLE ────────────── */
+.flip-card {
+    width: 260px;
+    height: 360px;
+    perspective: 1000px;
+    position: relative;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.7s cubic-bezier(.4,0,.2,1);
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: rotateY(180deg);
+    border-radius: 12px;
+    overflow: auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    background: linear-gradient(135deg, #1a1f26 0%, #0d1117 100%);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 1;
+}
+
+/* FONDO PANINI - VERDE */
+.flip-front::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 55%;
+    background: linear-gradient(135deg, #2d9f6f 0%, #3ab87c 100%);
+    z-index: 0;
+}
+
+/* FONDO PANINI - ROJO */
+.flip-front::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 45%;
+    background: linear-gradient(135deg, #e63946 0%, #f0623a 100%);
+    z-index: 0;
+}
+
+.flip-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(255,255,255,0.95);
+    border: 2px solid #2d9f6f;
+    color: #2d9f6f;
+    font-size: 0.5rem;
+    font-weight: 900;
+    padding: 5px 9px;
+    border-radius: 16px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    z-index: 3;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+}
+
+.flip-avatar {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 14px auto 0;
+    z-index: 2;
+}
+
+.flip-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    border: 3px solid #fff;
+    border-radius: 6px;
+    display: block;
+}
+
+.flip-ring {
+    display: none;
+}
+
+.flip-glow {
+    display: none;
+}
+
+.flip-name {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 900;
+    letter-spacing: 1.2px;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 16px 12px 2px;
+    text-align: center;
+    z-index: 2;
+    position: relative;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    line-height: 1;
+}
+
+.flip-title {
+    font-size: 0.65rem;
+    color: #fff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    z-index: 2;
+    position: relative;
+    margin: 0 12px 0;
+    opacity: 0.95;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.flip-hint {
+    display: none;
+}
+
+.flip-back-title {
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #63b3ed;
+    width: 100%;
+    text-align: center;
+    border-bottom: 2px solid rgba(99,179,237,0.3);
+    padding-bottom: 14px;
+    margin: 0;
+}
+
+.flip-back-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    width: 100%;
+}
+
+.fbs-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+}
+
+.fbs-row span:first-child {
+    color: #b0b4b8;
+    width: 60px;
+    text-align: left;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.fbs-bar {
+    flex: 1;
+    height: 6px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 3px;
+    overflow: hidden;
+    min-width: 50px;
+}
+
+.fbs-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #63b3ed, #90cdf4);
+    border-radius: 3px;
+    animation: fillBar 1.2s cubic-bezier(.4,0,.2,1) forwards;
+    width: 0;
+}
+
+.fbs-fill.fbs-green {
+    background: linear-gradient(90deg, #68d391, #9ae6b4);
+}
+
+.fbs-pct {
+    color: #63b3ed;
+    font-weight: 700;
+    width: 36px;
+    text-align: right;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+}
+
+.fbs-chips {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    width: 100%;
+    margin-top: 10px;
+    border-top: 1px solid rgba(99,179,237,0.15);
+    padding-top: 12px;
+}
+
+.fbs-chips span {
+    font-size: 0.75rem;
+    color: #99a1aa;
+    text-align: center;
+    line-height: 1.4;
 }
 
 /* ─── CARRUSEL INFINITO ───────────────────── */
