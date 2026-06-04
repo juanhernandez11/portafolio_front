@@ -524,6 +524,54 @@ function initCodeCanvas() {
 }
 
 /* ═══════════════════════════════════════════════
+   CARRUSEL: duplicar elementos para loop contínuo
+═══════════════════════════════════════════════ */
+function initCarousel() {
+    const track = document.getElementById('carousel-track');
+    if (!track) return;
+    track.innerHTML += track.innerHTML; // duplicar exactamente 1 vez
+    track.classList.add('running');     // activar animación tras duplicar
+}
+
+/* ═══════════════════════════════════════════════
+   TARJETA INTERACTIVA: parallax ligero y tilt
+═══════════════════════════════════════════════ */
+function initInteractiveCard(){
+    const card = document.getElementById('interactive-card');
+    if (!card) return;
+    const inner = card.querySelector('.flip-card-inner');
+    const avatar = card.querySelector('.front-avatar img');
+
+    let rect = null;
+    function onMove(e){
+        rect = rect || card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) - 0.5;
+        const y = ((e.clientY - rect.top) / rect.height) - 0.5;
+        const rx = (-y * 6).toFixed(2);
+        const ry = (x * 8).toFixed(2);
+        const isHover = card.matches(':hover');
+        // Si el usuario está en hover, combinamos flip + tilt
+        if (isHover) {
+            inner.style.transform = `rotateY(180deg) translateZ(0) rotateX(${rx}deg) rotateY(${ry}deg)`;
+        } else {
+            inner.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+        }
+        if (avatar) avatar.style.transform = `translate3d(${(x*10).toFixed(1)}px, ${(y*6).toFixed(1)}px, 30px) scale(1.02)`;
+    }
+
+    function reset(){
+        inner.style.transform = '';
+        if (avatar) avatar.style.transform = '';
+    }
+
+    card.addEventListener('mousemove', onMove);
+    card.addEventListener('mouseleave', reset);
+    card.addEventListener('touchmove', (ev)=>{ if(ev.touches && ev.touches[0]) onMove(ev.touches[0]); }, { passive:true });
+    card.addEventListener('touchend', reset);
+}
+
+
+/* ═══════════════════════════════════════════════
    PROGRESS BAR DE LECTURA
 ═══════════════════════════════════════════════ */
 (function() {
@@ -686,6 +734,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initCounters();
     initCursor();
     initTilt();
+
+    initCarousel();
+    initInteractiveCard();
 
     const btns  = document.querySelectorAll('.f-btn');
     const cards = document.querySelectorAll('.proj-card');

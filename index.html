@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juan Ramon Moreno Bravo | Frontend Engineer</title>
-    <meta name="description" content="Frontend Engineer especializado en React, Angular y Vue.js. Construyo interfaces rápidas, accesibles y visualmente memorables. Disponible para empleo y proyectos freelance.">
+    <meta name="description" content="Frontend Engineer con 2 años de experiencia. He reducido tiempos de carga 35%, automatizado procesos un 20% y entregado IA en producción con React, Angular y Vue.js. Disponible remoto desde México.">
     <meta name="keywords" content="Frontend Engineer, React, Angular, Vue.js, JavaScript, TypeScript, Node.js, desarrollo web, México">
     <meta name="author" content="Juan Ramon Moreno Bravo">
     <meta property="og:title" content="Juan Ramon Moreno Bravo | Frontend Engineer">
@@ -18,14 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-    <style>
-    .carousel-wrapper { overflow:hidden; padding:20px 0; }
-    .carousel-track{ display:flex; gap:14px; align-items:center; }
-    .carousel-item{ display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:120px; padding:12px; background:rgba(255,255,255,0.03); border-radius:10px; color:#e6eef8; }
-    .carousel-item .tech-icon{ font-size:44px; margin-bottom:8px; }
-    .carousel-item span{ font-size:0.9rem; color:#cfe8ff; margin-top:6px; }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@iconify/iconify@3/dist/iconify.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -59,20 +52,19 @@
     <!-- NAV -->
     <nav id="navbar">
         <div class="nav-inner">
-            <span class="nav-logo">JRMB</span>
+            <a href="#hero" class="nav-logo">JR<span class="nav-logo-dot">.</span></a>
             <ul class="nav-links">
-                <li><a href="#hero">Inicio</a></li>
-                <li><a href="#about">Sobre mí</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Proyectos</a></li>
-                <li><a href="#experience">Experiencia</a></li>
-                <li><a href="#contact">Contacto</a></li>
+                <li><a href="#about" data-nav>Sobre mí</a></li>
+                <li><a href="#skills" data-nav>Skills</a></li>
+                <li><a href="#projects" data-nav>Proyectos</a></li>
+                <li><a href="#experience" data-nav>Experiencia</a></li>
             </ul>
-            <button class="hamburger" id="hamburger" aria-label="Menú">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <div class="nav-right">
+                <a href="#contact" class="nav-cta">Contacto</a>
+                <button class="hamburger" id="hamburger" aria-label="Menú">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -82,33 +74,31 @@
         <div class="hero-dot-grid"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content" id="hero-content">
-            <p class="hero-tag"><span class="hero-tag-dot"></span> Disponible · Remote · México</p>
-            <h1>Construyo interfaces<br><span>que los usuarios<br>no olvidan.</span></h1>
-            <p class="hero-sub">Frontend Engineer · React · Angular · Vue.js<br>Transformo ideas complejas en productos digitales rápidos y memorables.</p>
+            <div class="hero-available"><span class="avail-dot"></span> Disponible · Remoto · México</div>
+            <h1>Juan Ramon<br><span>Moreno Bravo</span></h1>
+            <p class="hero-role">Frontend Engineer</p>
+            <p class="hero-sub">React · Angular · Vue.js · TypeScript · IA en producción</p>
             <div class="hero-stats">
-                <div><strong class="counter" data-target="8">0</strong><span>Proyectos</span></div>
-                <div><strong class="counter" data-target="35">0</strong><span>% Rendimiento</span></div>
-                <div><strong class="counter" data-target="20">0</strong><span>% Eficiencia</span></div>
-                <div><strong class="counter" data-target="3">0</strong><span>Años exp.</span></div>
+                <div class="hero-stat-item"><strong class="counter" data-target="9">0</strong><span>Proyectos</span></div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat-item"><strong class="counter" data-target="35">0</strong><span>% menos carga</span></div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat-item"><strong class="counter" data-target="4">0</strong><span>Años exp.</span></div>
             </div>
             <div class="hero-btns">
-                <a href="#projects" class="btn-red">Ver Proyectos</a>
+                <a href="#projects" class="btn-red">Ver proyectos</a>
                 <a href="cv/JUAN RAMON MORENO BRAVO.pdf" download class="btn-ghost">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                     Descargar CV
                 </a>
-                <a href="mailto:juanhernandezbravo750@gmail.com" class="btn-ghost">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    Contactar
-                </a>
             </div>
             <div class="hero-social">
                 <a href="https://github.com/juanhernandez11" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
                     GitHub
                 </a>
                 <a href="https://www.linkedin.com/in/juan-ramon-moreno-bravo-0830b1271/" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.48-2.24-1.99-2.24-1.08 0-1.72.72-2 1.42-.1.25-.13.6-.13.95v5.44h-3.55V9.72h3.55v1.38c.43-.66 1.19-1.6 2.9-1.6 2.12 0 3.7 1.38 3.7 4.36v6.59zM5.34 8.86a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 11.59H3.56V9.72h3.56v10.73zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.27V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.48-2.24-1.99-2.24-1.08 0-1.72.72-2 1.42-.1.25-.13.6-.13.95v5.44h-3.55V9.72h3.55v1.38c.43-.66 1.19-1.6 2.9-1.6 2.12 0 3.7 1.38 3.7 4.36v6.59zM5.34 8.86a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 11.59H3.56V9.72h3.56v10.73zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.27V1.73C24 .77 23.2 0 22.22 0z"/></svg>
                     LinkedIn
                 </a>
             </div>
@@ -123,71 +113,31 @@
     <section id="about" class="section-dark">
         <div class="about-grid">
             <div class="about-photo reveal">
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <!-- FRENTE -->
-                        <div class="flip-front">
-                            <div class="flip-badge">⚡ LVL 3 · FRONTEND</div>
-                            <div class="flip-avatar">
-                                <img src="foto/9571 - DIGITAL.jpg" alt="Juan Ramon Moreno Bravo" loading="lazy" />
-                                <div class="flip-ring"></div>
-                                <div class="flip-glow"></div>
-                            </div>
-                            <div class="flip-name">JUAN MORENO</div>
-                            <div class="flip-title">Frontend Engineer</div>
-                            <div class="flip-hint">Hover para ver stats →</div>
-                        </div>
-                        <!-- REVERSO -->
-                        <div class="flip-back">
-                            <div class="flip-back-title">STATS</div>
-                            <div class="flip-back-stats">
-                                <div class="fbs-row">
-                                    <span>React</span>
-                                    <div class="fbs-bar"><div class="fbs-fill" style="--w:90%"></div></div>
-                                    <span class="fbs-pct">90%</span>
-                                </div>
-                                <div class="fbs-row">
-                                    <span>Angular</span>
-                                    <div class="fbs-bar"><div class="fbs-fill" style="--w:85%"></div></div>
-                                    <span class="fbs-pct">85%</span>
-                                </div>
-                                <div class="fbs-row">
-                                    <span>Vue.js</span>
-                                    <div class="fbs-bar"><div class="fbs-fill fbs-green" style="--w:80%"></div></div>
-                                    <span class="fbs-pct">80%</span>
-                                </div>
-                                <div class="fbs-row">
-                                    <span>TypeScript</span>
-                                    <div class="fbs-bar"><div class="fbs-fill" style="--w:82%"></div></div>
-                                    <span class="fbs-pct">82%</span>
-                                </div>
-                                <div class="fbs-row">
-                                    <span>Node.js</span>
-                                    <div class="fbs-bar"><div class="fbs-fill fbs-green" style="--w:75%"></div></div>
-                                    <span class="fbs-pct">75%</span>
-                                </div>
-                                <div class="fbs-row">
-                                    <span>CSS/UI</span>
-                                    <div class="fbs-bar"><div class="fbs-fill" style="--w:88%"></div></div>
-                                    <span class="fbs-pct">88%</span>
-                                </div>
-                            </div>
-                            <div class="fbs-chips">
-                                <span>📍 Tehuacán, MX</span>
-                                <span>💼 Disponible</span>
-                                <span>🎓 Ing. Sistemas</span>
-                            </div>
-                        </div>
+                <div class="about-card">
+                    <div class="about-card-img">
+                        <img src="foto/9571 - DIGITAL.jpg" alt="Juan Ramon Moreno Bravo" loading="lazy" />
+                    </div>
+                    <div class="about-card-body">
+                        <div class="about-card-name">Juan Ramon Moreno Bravo</div>
+                        <div class="about-card-role">Frontend Engineer</div>
+                        <div class="about-card-loc">📍 Tehuacán, Puebla · México</div>
+                        <div class="about-card-status"><span class="avail-dot small"></span> Disponible · Remoto</div>
+                    </div>
+                    <div class="about-card-stats">
+                        <div class="acs-item"><strong>2</strong><span>Años</span></div>
+                        <div class="acs-divider"></div>
+                        <div class="acs-item"><strong>9</strong><span>Proyectos</span></div>
+                        <div class="acs-divider"></div>
+                        <div class="acs-item"><strong>−35%</strong><span>Carga web</span></div>
                     </div>
                 </div>
             </div>
             <div class="about-text reveal">
                 <h2 class="sec-title">Sobre mí</h2>
-                <p class="about-desc">Soy <strong>Juan Ramon Moreno Bravo</strong>, Frontend Engineer con enfoque en producto y experiencia construyendo interfaces que combinan rendimiento técnico con diseño de alto impacto.</p>
-                <p class="about-desc">Trabajo con <strong>React, Angular y Vue.js</strong> para resolver problemas reales — desde sistemas que redujeron tiempos de gestión un <strong>20%</strong>, hasta plataformas con <strong>IA integrada</strong> en producción.</p>
-                <p class="about-desc">No solo escribo código. Entiendo el negocio, optimizo la experiencia del usuario y entrego productos que funcionan. Actualmente buscando mi próximo reto en un equipo que construya productos que importen.</p>
+                <p class="about-desc">Soy <strong>Juan Ramon Moreno Bravo</strong>, Frontend Engineer con <strong>2 años</strong> entregando productos reales — no demos de tutorial. He trabajado con instituciones de salud pública, consultoras corporativas y clientes freelance con deadlines reales.</p>
+                <p class="about-desc">Mi stack principal es <strong>React, Angular y Vue.js</strong> con TypeScript. Lo que me diferencia: integro <strong>IA generativa en producción</strong> (Gemini API), optimizo Core Web Vitals y entrego código que escala, no solo que funciona.</p>
+                <p class="about-desc">Busco un equipo donde el frontend importe de verdad — donde la velocidad, la accesibilidad y la experiencia de usuario sean prioridad, no un afterthought.</p>
                 <div class="about-chips">
-                    <span>📍 Tehuacán, Puebla</span>
                     <span>💼 Disponible para trabajar</span>
                     <span>🎓 Ing. en Sistemas</span>
                     <span>🌐 Español · Inglés básico</span>
@@ -211,20 +161,25 @@
         <h2 class="sec-title">Stack Técnico</h2>
         <div class="carousel-wrapper">
             <div class="carousel-track" id="carousel-track">
-                <div class="carousel-item"><i class="devicon-react-original colored tech-icon"></i><span>React</span></div>
-                <div class="carousel-item"><i class="devicon-angularjs-plain colored tech-icon"></i><span>Angular</span></div>
-                <div class="carousel-item"><i class="devicon-vuejs-plain colored tech-icon"></i><span>Vue.js</span></div>
-                <div class="carousel-item"><i class="devicon-typescript-plain colored tech-icon"></i><span>TypeScript</span></div>
-                <div class="carousel-item"><i class="devicon-javascript-plain colored tech-icon"></i><span>JavaScript</span></div>
-                <div class="carousel-item"><i class="devicon-html5-plain colored tech-icon"></i><span>HTML5</span></div>
-                <div class="carousel-item"><i class="devicon-css3-plain colored tech-icon"></i><span>CSS3</span></div>
-                <div class="carousel-item"><i class="devicon-nodejs-plain colored tech-icon"></i><span>Node.js</span></div>
-                <div class="carousel-item"><i class="devicon-mongodb-plain colored tech-icon"></i><span>MongoDB</span></div>
-                <div class="carousel-item"><i class="devicon-mysql-plain colored tech-icon"></i><span>MySQL</span></div>
-                <div class="carousel-item"><i class="devicon-git-plain colored tech-icon"></i><span>Git</span></div>
-                <div class="carousel-item"><i class="devicon-firebase-plain colored tech-icon"></i><span>Firebase</span></div>
-                <div class="carousel-item"><i class="devicon-postman-plain colored tech-icon"></i><span>Postman</span></div>
-                <div class="carousel-item"><i class="devicon-wordpress-plain colored tech-icon"></i><span>WordPress</span></div>
+                <div class="carousel-item stag-primary"><span class="iconify tech-icon" data-icon="logos:react"></span><span>React</span></div>
+                <div class="carousel-item stag-primary"><span class="iconify tech-icon" data-icon="logos:angular-icon"></span><span>Angular</span></div>
+                <div class="carousel-item stag-primary"><span class="iconify tech-icon" data-icon="logos:vue"></span><span>Vue.js</span></div>
+                <div class="carousel-item stag-primary"><span class="iconify tech-icon" data-icon="logos:typescript-icon"></span><span>TypeScript</span></div>
+                <div class="carousel-item stag-primary"><span class="iconify tech-icon" data-icon="simple-icons:nextdotjs" style="color:#fff"></span><span>Next.js</span></div>
+                <div class="carousel-item stag-muted"><span class="iconify tech-icon" data-icon="logos:javascript"></span><span>JavaScript</span></div>
+                <div class="carousel-item stag-muted"><span class="iconify tech-icon" data-icon="logos:html-5"></span><span>HTML5</span></div>
+                <div class="carousel-item stag-muted"><span class="iconify tech-icon" data-icon="logos:css-3"></span><span>CSS3</span></div>
+                <div class="carousel-item stag-secondary"><span class="iconify tech-icon" data-icon="logos:tailwindcss-icon"></span><span>Tailwind</span></div>
+                <div class="carousel-item stag-secondary"><span class="iconify tech-icon" data-icon="logos:firebase"></span><span>Firebase</span></div>
+                <div class="carousel-item stag-secondary"><span class="iconify tech-icon" data-icon="simple-icons:googlegemini" style="color:#8E75B2"></span><span>Gemini AI</span></div>
+                <div class="carousel-item stag-secondary"><span class="iconify tech-icon" data-icon="logos:nodejs-icon"></span><span>Node.js</span></div>
+                <div class="carousel-item stag-secondary"><span class="iconify tech-icon" data-icon="logos:mysql"></span><span>MySQL</span></div>
+                <div class="carousel-item stag-secondary"><span class="iconify tech-icon" data-icon="logos:mongodb-icon"></span><span>MongoDB</span></div>
+                <div class="carousel-item stag-secondary"><span class="iconify tech-icon" data-icon="logos:wordpress-icon"></span><span>WordPress</span></div>
+                <div class="carousel-item stag-muted"><span class="iconify tech-icon" data-icon="logos:git-icon"></span><span>Git</span></div>
+                <div class="carousel-item stag-muted"><span class="iconify tech-icon" data-icon="simple-icons:github" style="color:#fff"></span><span>GitHub</span></div>
+                <div class="carousel-item stag-muted"><span class="iconify tech-icon" data-icon="simple-icons:vercel" style="color:#fff"></span><span>Vercel</span></div>
+                <div class="carousel-item stag-muted"><span class="iconify tech-icon" data-icon="simple-icons:netlify" style="color:#00C7B7"></span><span>Netlify</span></div>
             </div>
         </div>
     </section>
@@ -244,9 +199,19 @@
                 <div class="proj-top" style="background:linear-gradient(135deg,#6a11cb,#2575fc)"><span>🎓</span></div>
                 <div class="proj-body">
                     <h3>Estudio Genius</h3>
-                    <p>Plataforma académica con autenticación, gestión de tareas y asistente con IA integrada en producción</p>
+                    <p>Plataforma académica con auth, gestión de tareas y asistente IA. Tomé la decisión de integrar Gemini API directamente en el cliente para minimizar latencia — está en producción real con usuarios activos.</p>
                     <div class="proj-tags"><span>React</span><span>TypeScript</span><span>Firebase</span><span>Gemini AI</span></div>
                     <div class="proj-meta"><span class="badge-red">IA en producción</span><a href="https://estudiogenius.netlify.app/" target="_blank" rel="noopener noreferrer">Demo →</a></div>
+                </div>
+            </div>
+
+            <div class="proj-card reveal" data-category="professional">
+                <div class="proj-top proj-top--img"><img src="img/Captura de pantalla_14-8-2025_02035_www.appsheet.com.jpeg" alt="Taller Mecánico AppSheet" loading="lazy"></div>
+                <div class="proj-body">
+                    <h3>Taller Mecánico — App Operativa</h3>
+                    <p>Sistema de gestión de órdenes de trabajo, inventario de refacciones y clientes desplegado en producción. Construido sobre Google Sheets + AppSheet — cero costo de infraestructura para el cliente.</p>
+                    <div class="proj-tags"><span>AppSheet</span><span>Google Sheets</span><span>No-Code</span></div>
+                    <div class="proj-meta"><span class="badge-gray">En producción</span><a href="https://www.appsheet.com/start/b8a666c2-a540-42f0-9aa0-5af268b55232" target="_blank" rel="noopener noreferrer">Ver app →</a></div>
                 </div>
             </div>
 
@@ -254,19 +219,29 @@
                 <div class="proj-top" style="background:linear-gradient(135deg,#0f2027,#203a43,#2c5364)"><span>🔒</span></div>
                 <div class="proj-body">
                     <h3>Canal de Denuncias — ARH</h3>
-                    <p>Plataforma corporativa funcional para gestión de denuncias con diseño accesible, desplegada en producción</p>
+                    <p>Plataforma corporativa para gestión de denuncias internas. Implementé accesibilidad WCAG, atajos de teclado y diseño responsive — desplegada y usada activamente por el equipo de RH.</p>
                     <div class="proj-tags"><span>WordPress</span><span>UX/UI</span><span>Accesibilidad</span></div>
                     <div class="proj-meta"><span class="badge-gray">En producción</span><a href="https://denunciasarhconsultores.netlify.app/" target="_blank" rel="noopener noreferrer">Demo →</a></div>
                 </div>
             </div>
 
             <div class="proj-card reveal" data-category="professional">
-                <div class="proj-top" style="background:linear-gradient(135deg,#ffecd2,#fcb69f)"><span>🚘</span></div>
+                <div class="proj-top proj-top--img"><img src="img/Copilot_20250823_000106.png" alt="Sistema de Aparcamiento" loading="lazy"></div>
                 <div class="proj-body">
                     <h3>Sistema de Aparcamiento</h3>
-                    <p>Sistema integral de gestión: espacios, vehículos, pagos y panel de administración completo</p>
+                    <p>App desktop para gestión de espacios, vehículos y pagos con panel de administración. Decidí usar Java Swing para garantizar funcionamiento offline sin dependencias de red en el estacionamiento.</p>
                     <div class="proj-tags"><span>Java</span><span>Swing</span><span>Desktop</span></div>
                     <div class="proj-meta"><span class="badge-gray">May–Ago 2025</span><a href="https://github.com/juanhernandez11/sistema_aparcamiento" target="_blank" rel="noopener noreferrer">GitHub →</a></div>
+                </div>
+            </div>
+
+            <div class="proj-card reveal" data-category="professional">
+                <div class="proj-top" style="background:linear-gradient(135deg,#667eea,#764ba2)"><span>📊</span></div>
+                <div class="proj-body">
+                    <h3>Sistema de Inventario — Salud Pública</h3>
+                    <p>Sistema web con arquitectura MVC para la Jurisdicción Sanitaria Núm. 10. Automatizó reportes manuales y redujo los tiempos de gestión un <strong>20%</strong> en el primer mes.</p>
+                    <div class="proj-tags"><span>PHP</span><span>MySQL</span><span>MVC</span></div>
+                    <div class="proj-meta"><span class="badge-red">–20% tiempo gestión</span><a href="https://github.com/juanhernandez11/inventario.mvc" target="_blank" rel="noopener noreferrer">GitHub →</a></div>
                 </div>
             </div>
 
@@ -274,7 +249,7 @@
                 <div class="proj-top" style="background:linear-gradient(135deg,#F0923A,#D4732A)"><span>🌸</span></div>
                 <div class="proj-body">
                     <h3>Café Bloom — Landing 3D</h3>
-                    <p>Landing page con estética clay 3D, carrito interactivo, filtros de menú y modo tarde/mañana</p>
+                    <p>Landing con estética clay 3D, carrito interactivo, filtros de menú y modo día/noche. Usada como demo de capacidades frontend para clientes de diseño.</p>
                     <div class="proj-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
                     <div class="proj-meta"><a href="cafe-bloom/index.html" target="_blank" rel="noopener noreferrer">Demo →</a></div>
                 </div>
@@ -284,19 +259,9 @@
                 <div class="proj-top" style="background:linear-gradient(135deg,#fa709a,#fee140)"><span>👟</span></div>
                 <div class="proj-body">
                     <h3>Nike Store — Vue.js</h3>
-                    <p>E-commerce con carrito interactivo, filtros de productos y diseño responsivo</p>
+                    <p>E-commerce con carrito interactivo, filtros de productos y diseño responsivo. Construido en Vue 3 Composition API para demostrar dominio del framework más allá de React.</p>
                     <div class="proj-tags"><span>Vue 3</span><span>JavaScript</span><span>CSS</span></div>
                     <div class="proj-meta"><a href="https://quiet-jalebi-cff2cf.netlify.app/" target="_blank" rel="noopener noreferrer">Demo →</a></div>
-                </div>
-            </div>
-
-            <div class="proj-card reveal" data-category="professional">
-                <div class="proj-top" style="background:linear-gradient(135deg,#667eea,#764ba2)"><span>📊</span></div>
-                <div class="proj-body">
-                    <h3>Sistema de Inventario (MVC)</h3>
-                    <p>Sistema web administrativo con arquitectura MVC. Redujo tiempos de gestión un 20%</p>
-                    <div class="proj-tags"><span>PHP</span><span>MySQL</span><span>MVC</span></div>
-                    <div class="proj-meta"><span class="badge-red">20% eficiencia</span><a href="https://github.com/juanhernandez11/inventario.mvc" target="_blank" rel="noopener noreferrer">GitHub →</a></div>
                 </div>
             </div>
 
@@ -304,7 +269,7 @@
                 <div class="proj-top" style="background:linear-gradient(135deg,#f093fb,#f5576c)"><span>🌐</span></div>
                 <div class="proj-body">
                     <h3>Sitio Web Servicios Tech</h3>
-                    <p>Landing profesional con deployment real para empresa de servicios tecnológicos</p>
+                    <p>Landing profesional para empresa de servicios tecnológicos con deployment real. Optimicé imágenes y assets logrando carga bajo 2s en conexión móvil.</p>
                     <div class="proj-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
                     <div class="proj-meta"><a href="https://freeservicios.netlify.app/" target="_blank" rel="noopener noreferrer">Demo →</a></div>
                 </div>
@@ -314,7 +279,7 @@
                 <div class="proj-top" style="background:linear-gradient(135deg,#a8edea,#fed6e3)"><span>💰</span></div>
                 <div class="proj-body">
                     <h3>App de Presupuesto</h3>
-                    <p>Gestión de ingresos y gastos personales con estadísticas visuales</p>
+                    <p>Gestión de ingresos y gastos con estadísticas visuales en tiempo real. Proyecto personal para practicar manejo de estado complejo y visualización de datos sin librerías externas.</p>
                     <div class="proj-tags"><span>JavaScript</span><span>HTML</span><span>CSS</span></div>
                     <div class="proj-meta"><a href="https://app-presupuesto-jrmb.netlify.app" target="_blank" rel="noopener noreferrer">Demo →</a></div>
                 </div>
@@ -336,13 +301,13 @@
                     <h3>Frontend Developer & Web Optimizer</h3>
                     <p class="tl-company">ARH Consultores · Jóvenes Construyendo el Futuro · Tehuacán, Puebla</p>
                     <ul class="tl-list">
-                        <li>Rediseño completo de <a href="https://arhconsultores.com/" target="_blank" rel="noopener noreferrer">arhconsultores.com</a> y <a href="https://arhbusinessconsulting.com/" target="_blank" rel="noopener noreferrer">arhbusinessconsulting.com</a>: nueva arquitectura visual, tipografía y paleta de colores</li>
-                        <li>Desarrollo y despliegue de canal de denuncias corporativo funcional en producción</li>
-                        <li>Optimización de rendimiento: compresión de imágenes, minificación CSS/JS, reducción de plugins</li>
-                        <li>Implementación de plugins de accesibilidad y atajos de teclado para usuarios con visibilidad reducida</li>
-                        <li>Mejoras SEO on-page: encabezados, metadatos y estructura semántica</li>
+                        <li>Rediseño completo de <a href="https://arhconsultores.com/" target="_blank" rel="noopener noreferrer">arhconsultores.com</a> y <a href="https://arhbusinessconsulting.com/" target="_blank" rel="noopener noreferrer">arhbusinessconsulting.com</a> — nueva arquitectura visual, tipografía corporativa y sistema de colores desde cero</li>
+                        <li>Construí y desplegué canal de denuncias corporativo en producción — primer sistema interno de este tipo en la empresa</li>
+                        <li>Reduje tiempo de carga mediante compresión de imágenes, minificación CSS/JS y eliminación de plugins innecesarios</li>
+                        <li>Implementé accesibilidad WCAG: atajos de teclado, contraste, navegación por teclado para usuarios con visibilidad reducida</li>
+                        <li>SEO on-page: jerarquía de encabezados, metadatos estructurados, mejora de indexación orgánica</li>
                     </ul>
-                    <p class="tl-logro">🏆 Mejora significativa en tiempos de carga, accesibilidad y posicionamiento orgánico</p>
+                    <p class="tl-logro">🏆 Dos sitios corporativos rediseñados + producto en producción en menos de 6 meses</p>
                 </div>
             </div>
 
@@ -350,14 +315,14 @@
                 <div class="tl-dot"></div>
                 <div class="tl-card">
                     <span class="tl-date">May 2024 — Ago 2024</span>
-                    <h3>Pasante de Informática</h3>
-                    <p class="tl-company">Jurisdicción Sanitaria Núm. 10 · Tehuacán, Puebla</p>
+                    <h3>Pasante de Desarrollo de Software</h3>
+                    <p class="tl-company">Jurisdicción Sanitaria Núm. 10 · SSA · Tehuacán, Puebla</p>
                     <ul class="tl-list">
-                        <li>Desarrollé sistema de control de inventarios con HTML, CSS y lógica de negocio, reduciendo tiempos de gestión un <strong>20%</strong></li>
-                        <li>Automaticé generación de reportes administrativos eliminando trabajo manual repetitivo</li>
-                        <li>Diseñé interfaces con HTML/CSS mejorando la experiencia del personal administrativo</li>
+                        <li>Diseñé y desarrollé desde cero sistema web de control de inventarios para institución de salud pública — primer sistema digital del área</li>
+                        <li>Automaticé generación de reportes que antes se hacían manualmente en Excel, eliminando ~3h de trabajo administrativo semanal</li>
+                        <li>Reduje tiempos de gestión de inventario un <strong>20%</strong> en el primer mes de uso</li>
                     </ul>
-                    <p class="tl-logro">🏆 Automatización de procesos reduciendo tiempo de gestión en un <strong>20%</strong></p>
+                    <p class="tl-logro">🏆 Primera experiencia entregando software real a institución gubernamental bajo restricciones reales</p>
                 </div>
             </div>
 
@@ -368,12 +333,12 @@
                     <h3>Desarrollador Web Freelance</h3>
                     <p class="tl-company">Independiente · Tehuacán, Puebla</p>
                     <ul class="tl-list">
-                        <li>Desarrollé +5 sitios web para clientes reales (comercios, servicios locales) con HTML, CSS y JavaScript</li>
-                        <li>Reduje tiempos de carga un <strong>35%</strong> mediante optimización frontend y buenas prácticas</li>
-                        <li>Implementé bases de datos MySQL para contenido dinámico y gestión de información</li>
-                        <li>Gestioné proyectos de inicio a entrega con comunicación directa al cliente</li>
+                        <li>Entregué +5 sitios web a clientes reales con deadlines y pagos reales — comercios locales, servicios y landing pages</li>
+                        <li>Aprendí a gestionar expectativas, presupuestos y cambios de alcance directamente con el cliente sin intermediarios</li>
+                        <li>Reduje tiempos de carga un <strong>35%</strong> en promedio mediante optimización de assets, lazy loading y buenas prácticas de rendimiento</li>
+                        <li>Implementé MySQL para gestión de contenido dinámico en sitios con catálogos y formularios</li>
                     </ul>
-                    <p class="tl-logro">🏆 Reducción de tiempos de carga en un <strong>35%</strong> mediante optimización frontend</p>
+                    <p class="tl-logro">🏆 Base real de clientes pagando — aprendí más en estos 2 años que en cualquier curso</p>
                 </div>
             </div>
 
@@ -381,21 +346,40 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="section-mid contact-center">
-        <h2 class="sec-title sec-title--center">Hablemos</h2>
-        <p class="contact-sub">¿Tienes un proyecto o una oportunidad? Estoy disponible.</p>
-        <a href="mailto:juanhernandezbravo750@gmail.com" class="btn-red btn-xl">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            Enviar un correo
-        </a>
-        <div class="contact-links">
-            <a href="https://github.com/juanhernandez11" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://www.linkedin.com/in/juan-ramon-moreno-bravo-0830b1271/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <section id="contact" class="section-mid">
+        <h2 class="sec-title sec-title--center">Hablemos.</h2>
+        <p class="contact-sub">Disponible para empleo remoto o híbrido · Puebla / CDMX · Respondo en menos de 24h</p>
+        <div class="contact-wrapper reveal">
+            <a class="contact-link-card" href="mailto:juanhernandezbravo750@gmail.com">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <div><strong>Email</strong><span>juanhernandezbravo750@gmail.com</span></div>
+                <svg class="contact-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a class="contact-link-card" href="https://www.linkedin.com/in/juan-ramon-moreno-bravo-0830b1271/" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.48-2.24-1.99-2.24-1.08 0-1.72.72-2 1.42-.1.25-.13.6-.13.95v5.44h-3.55V9.72h3.55v1.38c.43-.66 1.19-1.6 2.9-1.6 2.12 0 3.7 1.38 3.7 4.36v6.59zM5.34 8.86a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 11.59H3.56V9.72h3.56v10.73zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.27V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+                <div><strong>LinkedIn</strong><span>juan-ramon-moreno-bravo</span></div>
+                <svg class="contact-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a class="contact-link-card" href="https://github.com/juanhernandez11" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                <div><strong>GitHub</strong><span>juanhernandez11</span></div>
+                <svg class="contact-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a class="contact-link-card" href="cv/JUAN RAMON MORENO BRAVO.pdf" download>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <div><strong>Currículum</strong><span>Descargar CV en PDF</span></div>
+                <svg class="contact-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <div class="contact-status">
+                <span class="avail-dot small"></span>
+                Disponible · incorporación inmediata · Remoto o híbrido
+            </div>
         </div>
     </section>
 
     <footer>
-        <p>© 2025 Juan Ramon Moreno Bravo · Frontend Engineer</p>
+        <p>© 2025 All rights reserved.</p>
+        <p>Juan Ramon Moreno Bravo · Frontend Engineer</p>
     </footer>
 
 </div><!-- /main -->
