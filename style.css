@@ -253,12 +253,15 @@ strong { font-weight: 700; }
     inset: 0;
     width: 100%;
     height: 100%;
-    animation: ring-spin 8s linear infinite;
+    animation: ring-spin 12s linear infinite;
+    transform-box: fill-box;
     transform-origin: center;
     pointer-events: none;
+    z-index: 2;
 }
 .hero-ring-orbit {
-    transition: stroke-dasharray 0.6s cubic-bezier(0.76, 0, 0.24, 1), stroke-width 0.4s;
+    opacity: 0.95;
+    transition: opacity 0.4s, stroke-width 0.4s;
 }
 .hero-ring-ball {
     filter: drop-shadow(0 0 6px rgba(12, 11, 11, 0.55));
@@ -270,8 +273,8 @@ strong { font-weight: 700; }
 }
 
 .hero-photo-circle {
-    width: 88%;
-    height: 88%;
+    width: 84%;
+    height: 84%;
     border-radius: 50%;
     overflow: hidden;
     clip-path: circle(50% at 50% 50%);
@@ -279,7 +282,8 @@ strong { font-weight: 700; }
     transition: clip-path 0.65s cubic-bezier(0.76, 0, 0.24, 1),
                 transform 0.65s cubic-bezier(0.76, 0, 0.24, 1),
                 box-shadow 0.65s cubic-bezier(0.76, 0, 0.24, 1);
-    position: relative; z-index: 1;
+    position: relative;
+    z-index: 1;
 }
 .hero-photo-circle .hero-photo {
     width: 100%; height: 100%;
@@ -297,9 +301,10 @@ strong { font-weight: 700; }
 .hero-photo-ring:hover .hero-photo-circle .hero-photo {
     transform: scale(1.06); filter: grayscale(0%);
 }
-.hero-photo-ring:hover .hero-ring-svg { animation-duration: 4s; }
+.hero-photo-ring:hover .hero-ring-svg { animation-duration: 6s; }
 .hero-photo-ring:hover .hero-ring-orbit {
-    stroke-dasharray: 80 864; stroke-width: 2.5;
+    opacity: 1;
+    stroke-width: 2.5;
 }
 
 .hero-photo-caption {
@@ -692,11 +697,4 @@ strong { font-weight: 700; }
 /* 2. Forzar el desbordamiento del SVG */
 .hero-ring-svg {
     overflow: visible !important;
-}
-
-/* 3. Sobreescribir la animación para escalar el anillo completo un 2%
-      hacia el centro. Esto evita el recorte (clipping) sin desfasar los círculos. */
-@keyframes ring-spin {
-    from { transform: scale(0.98) rotate(0deg); }
-    to   { transform: scale(0.98) rotate(360deg); }
 }

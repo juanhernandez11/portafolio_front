@@ -36,7 +36,7 @@
             <a href="#experience" class="nav-link">Experiencia</a>
             <a href="#contact" class="nav-link">Contacto</a>
         </nav>
-        <button class="nav-toggle" id="nav-toggle" aria-label="Menú">
+        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu">
             <span class="toggle-label" id="toggle-label">menú</span>
             <div class="toggle-icon">
                 <span class="toggle-span is-top"></span>
@@ -83,10 +83,17 @@
 
         <div class="hero-photo-col">
             <div class="hero-photo-ring">
-                <svg class="hero-ring-svg" viewBox="-12 -12 344 344" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <svg class="hero-ring-svg" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                    <defs>
+                        <linearGradient id="hero-ring-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#0c0b0b" stop-opacity="0.72"/>
+                            <stop offset="52%" stop-color="#0c0b0b" stop-opacity="0.28"/>
+                            <stop offset="100%" stop-color="#0c0b0b" stop-opacity="0.72"/>
+                        </linearGradient>
+                    </defs>
                     <circle class="hero-ring-track" cx="160" cy="160" r="150" fill="none" stroke="rgba(12,11,11,0.12)" stroke-width="1.5"/>
-                    <circle class="hero-ring-orbit" cx="160" cy="160" r="150" fill="none" stroke="#0c0b0b" stroke-width="2"
-                            stroke-linecap="round" stroke-dasharray="30 914" stroke-dashoffset="0" pathLength="944"/>
+                    <circle class="hero-ring-orbit" cx="160" cy="160" r="150" fill="none" stroke-width="2"
+                            stroke="url(#hero-ring-gradient)" stroke-linecap="round"/>
                     <circle class="hero-ring-ball" cx="160" cy="10" r="5" fill="#0c0b0b"/>
                 </svg>
                 <div class="hero-photo-circle">
@@ -139,7 +146,7 @@
         <span class="st-sep">·</span>
         <span class="st-item"><span class="iconify" data-icon="simple-icons:supabase" style="color:#3ECF8E"></span> Supabase</span>
         <span class="st-sep">·</span>
-        <span class="st-item"><span class="iconify" data-icon="logos:firebase"></span> Firebase</span>
+        <span class="st-item"><span class="iconify" data-icon="logos:firebase"></span></span>
         <span class="st-sep">·</span>
         <span class="st-item"><span class="iconify" data-icon="logos:nodejs-icon"></span> Node.js</span>
         <span class="st-sep">·</span>

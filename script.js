@@ -1,10 +1,12 @@
 /* ═══════════════════════════════════════════════
    LENIS — smooth scroll (Zajno usa esto)
 ═══════════════════════════════════════════════ */
-const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
-lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add(t => lenis.raf(t * 1000));
-gsap.ticker.lagSmoothing(0);
+if (typeof gsap !== 'undefined' && typeof Lenis !== 'undefined') {
+    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+}
 
 /* ═══════════════════════════════════════════════
    PRELOADER — contador 0→100 + barra + split panels
@@ -15,24 +17,30 @@ gsap.ticker.lagSmoothing(0);
     const bar     = document.getElementById('loader-bar');
     const loader  = document.getElementById('loader');
     const panels  = document.querySelectorAll('.loader-panel');
-    if (!loader) return;
 
-    const tl = gsap.timeline({
-        onComplete: exitLoader
-    });
+    if (!loader) {
+        if (typeof ScrollTrigger !== 'undefined') initPage();
+        return;
+    }
 
-    // Contador 0 → 100
+    if (!counter || !bar || typeof gsap === 'undefined') {
+        loader.style.display = 'none';
+        document.body.classList.remove('is-loading');
+        if (typeof ScrollTrigger !== 'undefined') initPage();
+        return;
+    }
+
+    const tl = gsap.timeline({ onComplete: exitLoader });
+
     tl.to({ n: 0 }, {
         n: 100, duration: 2,
         ease: 'power2.inOut',
         onUpdate() { counter.textContent = Math.round(this.targets()[0].n); }
     }, 0);
 
-    // Barra de progreso
     tl.to(bar, { width: '100%', duration: 2, ease: 'power2.inOut' }, 0);
 
     function exitLoader() {
-        // Paneles se abren hacia arriba (Zajno split)
         gsap.to(panels, {
             scaleY: 0,
             transformOrigin: 'top',
@@ -45,7 +53,6 @@ gsap.ticker.lagSmoothing(0);
                 initPage();
             }
         });
-        // Fade out counter
         gsap.to([counter, bar], { opacity: 0, duration: 0.3 });
     }
 })();
@@ -54,6 +61,8 @@ gsap.ticker.lagSmoothing(0);
    INIT PAGE — todo lo que corre después del loader
 ═══════════════════════════════════════════════ */
 function initPage() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
     initNav();
     initHero();
     initScrollingText();
@@ -71,17 +80,20 @@ function initPage() {
    (Zajno: nav-panels con transform inicial)
 ═══════════════════════════════════════════════ */
 function initNav() {
-    // Nav entra desde arriba
-    gsap.to('#nav-panels', {
+    const navPanels = document.getElementById('nav-panels');
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('nav-menu');
+    const label = document.getElementById('toggle-label');
+    const links = document.querySelectorAll('.nav-menu-link');
+
+    if (!navPanels) return;
+
+    gsap.to(navPanels, {
         y: 0, duration: 1,
         ease: 'power3.out', delay: 0.1
     });
 
-    // Toggle menú
-    const toggle = document.getElementById('nav-toggle');
-    const menu   = document.getElementById('nav-menu');
-    const label  = document.getElementById('toggle-label');
-    const links  = document.querySelectorAll('.nav-menu-link');
+    if (!toggle || !menu || !label) return;
 
     let open = false;
 
@@ -89,10 +101,11 @@ function initNav() {
         open = true;
         menu.classList.add('is-open');
         toggle.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', 'Cerrar menú');
         label.textContent = 'close';
         document.body.style.overflow = 'hidden';
 
-        // Zajno: cada link del menú entra con stagger
         gsap.fromTo(links,
             { yPercent: 110 },
             { yPercent: 0, duration: 0.7, stagger: 0.06, ease: 'power3.out', delay: 0.2 }
@@ -103,6 +116,8 @@ function initNav() {
         open = false;
         menu.classList.remove('is-open');
         toggle.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Abrir menú');
         label.textContent = 'menú';
         document.body.style.overflow = '';
     }
@@ -111,12 +126,10 @@ function initNav() {
     links.forEach(l => l.addEventListener('click', closeMenu));
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
-    // Nav solid on scroll
     ScrollTrigger.create({
         start: 'top -60',
         onUpdate(self) {
-            document.getElementById('nav-panels')
-                ?.classList.toggle('is-solid', self.scroll() > 60);
+            navPanels.classList.toggle('is-solid', self.scroll() > 60);
         }
     });
 }
@@ -127,41 +140,52 @@ function initNav() {
 function initHero() {
     const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
-    // Tag
     tl.fromTo('.hero-tag', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.6 }, 0.05);
 
-    // Título: cada .text-inner sube desde yPercent 110 (Zajno masking)
-    tl.fromTo('.hero-h1 .text-inner',
-        { yPercent: 110 },
-        { yPercent: 0, duration: 1.1, stagger: 0.1 },
-        0.1
-    );
+    const titleLines = document.querySelectorAll('.hero-h1 .text-inner');
+    if (titleLines.length) {
+        tl.fromTo(titleLines,
+            { yPercent: 110 },
+            { yPercent: 0, duration: 1.1, stagger: 0.1 },
+            0.1
+        );
+    }
 
-    // Desc y acciones
-    tl.fromTo('.hero-desc .text-inner',
-        { yPercent: 110 },
-        { yPercent: 0, duration: 0.9 },
-        0.45
-    );
-    tl.fromTo('.hero-actions .text-inner',
-        { yPercent: 110 },
-        { yPercent: 0, duration: 0.8 },
-        0.55
-    );
+    const desc = document.querySelector('.hero-desc .text-inner');
+    if (desc) {
+        tl.fromTo(desc,
+            { yPercent: 110 },
+            { yPercent: 0, duration: 0.9 },
+            0.45
+        );
+    }
 
-    // Foto — aparece desde opacity/scale
-    tl.fromTo('.hero-photo-col',
-        { opacity: 0, scale: 0.95, y: 20 },
-        { opacity: 1, scale: 1, y: 0, duration: 1.2 },
-        0.1
-    );
+    const actions = document.querySelector('.hero-actions .text-inner');
+    if (actions) {
+        tl.fromTo(actions,
+            { yPercent: 110 },
+            { yPercent: 0, duration: 0.8 },
+            0.55
+        );
+    }
 
-    // Stats
-    tl.fromTo('.hero-stats',
-        { opacity: 0, y: 12 },
-        { opacity: 1, y: 0, duration: 0.7 },
-        0.7
-    );
+    const photoCol = document.querySelector('.hero-photo-col');
+    if (photoCol) {
+        tl.fromTo(photoCol,
+            { opacity: 0, scale: 0.95, y: 20 },
+            { opacity: 1, scale: 1, y: 0, duration: 1.2 },
+            0.1
+        );
+    }
+
+    const stats = document.querySelector('.hero-stats');
+    if (stats) {
+        tl.fromTo(stats,
+            { opacity: 0, y: 12 },
+            { opacity: 1, y: 0, duration: 0.7 },
+            0.7
+        );
+    }
 }
 
 /* ═══════════════════════════════════════════════
@@ -180,10 +204,18 @@ function initScrollingText() {
 ═══════════════════════════════════════════════ */
 function initSplitTitles() {
     document.querySelectorAll('.reveal-lines').forEach(el => {
-        const words = el.textContent.trim().split(/\s+/);
-        el.innerHTML = words.map(w =>
-            `<span class="word"><span class="word-inner">${w}</span></span>`
-        ).join(' ');
+        const text = el.textContent.trim();
+        if (!text) return;
+
+        const words = text.split(/\s+/);
+        if (words.length === 0) return;
+
+        const hasAlreadyWrapped = el.querySelector('.word');
+        if (!hasAlreadyWrapped) {
+            el.innerHTML = words.map(w =>
+                `<span class="word"><span class="word-inner">${w}</span></span>`
+            ).join(' ');
+        }
 
         ScrollTrigger.create({
             trigger: el, start: 'top 88%', once: true,
@@ -291,6 +323,8 @@ function initFilters() {
     const btns = document.querySelectorAll('.f-btn');
     const rows = document.querySelectorAll('.proj-item:not(.proj-item--last)');
 
+    if (!btns.length || !rows.length) return;
+
     btns.forEach(btn => {
         btn.addEventListener('click', () => {
             btns.forEach(b => b.classList.remove('active'));
@@ -322,9 +356,17 @@ function initFilters() {
 document.addEventListener('click', e => {
     const a = e.target.closest('a[href^="#"]');
     if (!a) return;
+
+    const href = a.getAttribute('href');
+    if (!href || href === '#') return;
+
     e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) lenis.scrollTo(target, { offset: -80, duration: 1.4 });
+    const target = document.querySelector(href);
+    if (target && typeof Lenis !== 'undefined') {
+        lenis.scrollTo(target, { offset: -80, duration: 1.4 });
+    } else if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 });
 
 /* ═══════════════════════════════════════════════
