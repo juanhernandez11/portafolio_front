@@ -556,9 +556,9 @@ a:focus-visible {
 }
 .contact-row {
     display: flex; align-items: center;
-    padding: 1.5rem 0;
+    padding: 2rem 0;
     border-bottom: 1px solid var(--border);
-    gap: 1rem; position: relative; overflow: hidden;
+    gap: 1rem; position: relative; overflow: visible;
     transition: background 0.2s;
 }
 .contact-row:first-child { border-top: 1px solid var(--border); }
@@ -573,19 +573,31 @@ a:focus-visible {
 .contact-label {
     font-size: 0.65rem; font-weight: 700; color: rgba(12, 11, 11, 0.35);
     letter-spacing: 0.12em; text-transform: uppercase;
-    width: 70px; flex-shrink: 0;
+    width: 82px; flex: 0 0 82px;
 }
 .contact-val {
-    font-size: 0.85rem; color: rgba(12, 11, 11, 0.7);
-    font-weight: 500; flex: 1; min-width: 0;
+    font-size: 0.875rem; color: rgba(12, 11, 11, 0.7);
+    font-weight: 300; flex: 1 1 auto; min-width: 0;
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
     transition: color 0.2s;
 }
 .contact-row:hover .contact-val { color: #0c0b0b; }
 .contact-arrow {
-    font-size: 0.9rem; color: rgba(12, 11, 11, 0.3);
-    transition: color 0.2s, transform 0.3s var(--ease-out);
-    flex-shrink: 0;
+    flex: 0 0 20px;
+    width: 20px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 0.9rem;
+    line-height: 1;
+
+    color: rgba(12, 11, 11, 0.3);
+
+    transition:
+        color 0.2s,
+        transform 0.3s var(--ease-out);
 }
 .contact-row:hover .contact-arrow { color: #0c0b0b; transform: translate(3px, -3px); }
 
