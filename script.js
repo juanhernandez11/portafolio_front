@@ -159,10 +159,12 @@ function initNav() {
         menu.inert = false;
         links[0]?.focus();
 
-        gsap.fromTo(links,
-            { yPercent: 110 },
-            { yPercent: 0, duration: 0.7, stagger: 0.06, ease: 'power3.out', delay: 0.2 }
-        );
+        if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+            gsap.fromTo(links,
+                { yPercent: 110 },
+                { yPercent: 0, duration: 0.7, stagger: 0.06, ease: 'power3.out', delay: 0.2 }
+            );
+        }
     }
 
     function closeMenu() {
@@ -198,8 +200,6 @@ function initNav() {
 ═══════════════════════════════════════════════ */
 function initHero() {
     const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
-
-    tl.fromTo('.hero-tag', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.6 }, 0.05);
 
     const titleLines = document.querySelectorAll('.hero-h1 .text-inner');
     if (titleLines.length) {
@@ -364,14 +364,18 @@ function initContactRows() {
 ═══════════════════════════════════════════════ */
 function initCounters() {
     document.querySelectorAll('.counter').forEach(el => {
-        const target = +el.dataset.target;
+        const target = Number(el.dataset.target);
         const suffix = el.dataset.suffix || '';
+        if (!Number.isFinite(target)) return;
+
         ScrollTrigger.create({
             trigger: el, start: 'top 90%', once: true,
             onEnter() {
-                gsap.to({ n: 0 }, {
+                const state = { n: 0 };
+                gsap.to(state, {
                     n: target, duration: 1.6, ease: 'power2.out',
-                    onUpdate() { el.textContent = Math.round(this.targets()[0].n) + suffix; }
+                    onUpdate() { el.textContent = Math.round(state.n) + suffix; },
+                    onComplete() { el.textContent = target + suffix; }
                 });
             }
         });

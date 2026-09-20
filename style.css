@@ -607,6 +607,13 @@ a:focus-visible {
 
 /* ── REDUCED MOTION ──────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
+    .nav-menu,
+    .nav-link::after,
+    .btn-primary,
+    .btn-ghost,
+    .contact-row::after {
+        transition: none;
+    }
     .hero-ring-svg { animation: none; }
     .hero-photo-circle,
     .hero-photo-circle .hero-photo,
