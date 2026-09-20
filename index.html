@@ -5,6 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juan Ramon Moreno — Frontend Engineer</title>
     <meta name="description" content="Frontend Engineer. React, Angular, Vue.js, TypeScript. Disponible remoto desde México.">
+    <link rel="canonical" href="https://portafoliofront.netlify.app/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_MX">
+    <meta property="og:url" content="https://portafoliofront.netlify.app/">
+    <meta property="og:title" content="Juan Ramon Moreno — Frontend Engineer">
+    <meta property="og:description" content="Frontend Engineer especializado en React, Angular, Vue.js y TypeScript.">
+    <meta property="og:image" content="https://portafoliofront.netlify.app/foto/9571%20-%20DIGITAL.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Juan Ramon Moreno — Frontend Engineer">
+    <meta name="twitter:description" content="Frontend Engineer especializado en React, Angular, Vue.js y TypeScript.">
+    <meta name="twitter:image" content="https://portafoliofront.netlify.app/foto/9571%20-%20DIGITAL.jpg">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Juan Ramon Moreno Bravo",
+            "jobTitle": "Frontend Engineer",
+            "url": "https://portafoliofront.netlify.app/",
+            "image": "https://portafoliofront.netlify.app/foto/9571%20-%20DIGITAL.jpg",
+            "sameAs": [
+                "https://github.com/juanhernandez11",
+                "https://www.linkedin.com/in/juan-ramon-moreno-bravo-0830b1271/"
+            ],
+            "knowsAbout": ["React", "Angular", "Vue.js", "TypeScript", "Frontend Development"]
+        }
+    </script>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +53,7 @@
 </div>
 
 <!-- NAV -->
-<div class="nav-panels" id="nav-panels">
+<header class="nav-panels" id="nav-panels">
     <div class="nav-panel">
         <a href="#hero" class="nav-logo">JR.</a>
         <nav class="nav-links">
@@ -44,10 +70,10 @@
             </div>
         </button>
     </div>
-</div>
+</header>
 
 <!-- MOBILE MENU -->
-<div class="nav-menu" id="nav-menu" role="navigation" aria-label="Navegación principal">
+<nav class="nav-menu" id="nav-menu" aria-label="Navegación principal" aria-hidden="true" inert>
     <div class="nav-menu-inner">
         <a href="#about" class="nav-menu-link">Sobre mí</a>
         <a href="#projects" class="nav-menu-link">Proyectos</a>
@@ -58,14 +84,13 @@
         <a href="https://github.com/juanhernandez11" target="_blank" rel="noopener">GitHub ↗</a>
         <a href="https://www.linkedin.com/in/juan-ramon-moreno-bravo-0830b1271/" target="_blank" rel="noopener">LinkedIn ↗</a>
     </div>
-</div>
+</nav>
 
+<main>
 <!-- HERO -->
 <section id="hero" class="section is-hero">
     <div class="hero-inner">
         <div class="hero-content">
-            <div class="hero-tag">
-            </div>
             <h1 class="hero-h1">
                 <span class="text-mask"><span class="text-inner">Frontend</span></span>
                 <span class="text-mask"><span class="text-inner is-italic">Engineer.</span></span>
@@ -97,7 +122,7 @@
                     <circle class="hero-ring-ball" cx="160" cy="10" r="5" fill="#0c0b0b"/>
                 </svg>
                 <div class="hero-photo-circle">
-                    <img src="foto/9571 - DIGITAL.jpg" alt="Juan Ramon Moreno Bravo" class="hero-photo" loading="eager">
+                    <img src="foto/9571 - DIGITAL.jpg" alt="Juan Ramon Moreno Bravo" class="hero-photo" width="709" height="1063" loading="eager" fetchpriority="high" decoding="async">
                 </div>
             </div>
             <div class="hero-photo-caption">
@@ -146,7 +171,7 @@
         <span class="st-sep">·</span>
         <span class="st-item"><span class="iconify" data-icon="simple-icons:supabase" style="color:#3ECF8E"></span> Supabase</span>
         <span class="st-sep">·</span>
-        <span class="st-item"><span class="iconify" data-icon="logos:firebase"></span></span>
+        <span class="st-item"><span class="iconify" data-icon="logos:firebase" aria-hidden="true"></span> Firebase</span>
         <span class="st-sep">·</span>
         <span class="st-item"><span class="iconify" data-icon="logos:nodejs-icon"></span> Node.js</span>
         <span class="st-sep">·</span>
@@ -169,7 +194,7 @@
         <div class="about-grid">
             <div class="about-img-col reveal-scale">
                 <div class="about-img-wrap">
-                    <img src="foto/9571 - DIGITAL.jpg" alt="Juan Ramon Moreno Bravo" loading="lazy">
+                    <img src="foto/9571 - DIGITAL.jpg" alt="Juan Ramon Moreno Bravo" width="709" height="1063" loading="lazy" decoding="async">
                 </div>
             </div>
             <div class="about-text-col">
@@ -197,10 +222,10 @@
         <div class="section-label reveal-fade">Proyectos</div>
         <h2 class="section-h2 reveal-lines">Trabajo seleccionado.</h2>
         <div class="filter-bar reveal-fade">
-            <button class="f-btn active" data-filter="all">Todos</button>
-            <button class="f-btn" data-filter="professional">Profesional</button>
-            <button class="f-btn" data-filter="freelance">Freelance</button>
-            <button class="f-btn" data-filter="personal">Personal</button>
+            <button class="f-btn active" data-filter="all" aria-pressed="true">Todos</button>
+            <button class="f-btn" data-filter="professional" aria-pressed="false">Profesional</button>
+            <button class="f-btn" data-filter="freelance" aria-pressed="false">Freelance</button>
+            <button class="f-btn" data-filter="personal" aria-pressed="false">Personal</button>
         </div>
         <div class="proj-list" id="projects-grid">
 
@@ -426,26 +451,31 @@
         <div class="section-label reveal-fade">Contacto</div>
         <h2 class="section-h2 reveal-lines is-big">Hablemos.</h2>
         <p class="contact-sub reveal-fade">Disponible para empleo remoto o híbrido · Respondo en menos de 24h</p>
-        <div class="contact-sub">
+        <div class="contact-list">
             <a class="contact-row" href="mailto:juanhernandezbravo750@gmail.com">
                 <span class="contact-label">Email</span>
                 <span class="contact-val">juanhernandezbravo750@gmail.com</span>
+                <span class="contact-arrow" aria-hidden="true">↗</span>
             </a>
             <a class="contact-row" href="https://www.linkedin.com/in/juan-ramon-moreno-bravo-0830b1271/" target="_blank" rel="noopener">
                 <span class="contact-label">LinkedIn</span>
                 <span class="contact-val">juan-ramon-moreno-bravo</span>
+                <span class="contact-arrow" aria-hidden="true">↗</span>
             </a>
             <a class="contact-row" href="https://github.com/juanhernandez11" target="_blank" rel="noopener">
                 <span class="contact-label">GitHub</span>
                 <span class="contact-val">juanhernandez11</span>
+                <span class="contact-arrow" aria-hidden="true">↗</span>
             </a>
             <a class="contact-row" href="cv/JUAN RAMON MORENO BRAVO.pdf" download>
                 <span class="contact-label">CV</span>
                 <span class="contact-val">Descargar PDF</span>
+                <span class="contact-arrow" aria-hidden="true">↗</span>
             </a>
         </div>
     </div>
 </section>
+</main>
 
 <footer class="footer">
     <div class="footer-inner">

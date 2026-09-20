@@ -130,6 +130,8 @@ function initNav() {
     let previousFocus = null;
 
     if (!navPanels) return;
+    menu?.setAttribute('aria-hidden', 'true');
+    if (menu) menu.inert = true;
 
     if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
         gsap.to(navPanels, {
@@ -153,6 +155,8 @@ function initNav() {
         toggle.setAttribute('aria-label', 'Cerrar menú');
         label.textContent = 'close';
         document.body.style.overflow = 'hidden';
+        menu.setAttribute('aria-hidden', 'false');
+        menu.inert = false;
         links[0]?.focus();
 
         gsap.fromTo(links,
@@ -169,6 +173,8 @@ function initNav() {
         toggle.setAttribute('aria-label', 'Abrir menú');
         label.textContent = 'menú';
         document.body.style.overflow = '';
+        menu.setAttribute('aria-hidden', 'true');
+        menu.inert = true;
         previousFocus?.focus();
         previousFocus = null;
     }
@@ -385,6 +391,7 @@ function initFilters() {
         btn.addEventListener('click', () => {
             btns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+            btns.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
             const filter = btn.dataset.filter;
             if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
                 gsap.killTweensOf(rows);
