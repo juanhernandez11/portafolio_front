@@ -326,6 +326,7 @@ a:focus-visible {
     border-top: 1px solid var(--border);
     padding: 1.5rem 0;
     gap: 0; flex-wrap: wrap;
+    row-gap: 1rem;
 }
 .hstat { display: flex; flex-direction: column; gap: 3px; padding-right: 2.5rem; }
 .hstat strong { font-size: 1.8rem; font-weight: 900; line-height: 1; }
@@ -346,6 +347,7 @@ a:focus-visible {
     display: flex; align-items: center; gap: 1.5rem;
     width: max-content;
     animation: scrollTrack 30s linear infinite;
+    will-change: transform;
 }
 .scrolling-track:hover { animation-play-state: paused; }
 @keyframes scrollTrack {
@@ -552,7 +554,8 @@ a:focus-visible {
     display: flex;
     flex-direction: column;
     width: min(100%, 700px);
-    margin: 0 auto;
+    /* alineado a la izquierda para consistencia con el H2 */
+    margin: 0;
 }
 .contact-row {
     display: flex; align-items: center;
@@ -577,7 +580,7 @@ a:focus-visible {
 }
 .contact-val {
     font-size: 0.875rem; color: rgba(12, 11, 11, 0.7);
-    font-weight: 300; flex: 1 1 auto; min-width: 0;
+    font-weight: 400; flex: 1 1 auto; min-width: 0;
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
     transition: color 0.2s;
 }
@@ -686,7 +689,7 @@ a:focus-visible {
 
     /* About: imagen encima del texto */
     .about-grid { grid-template-columns: 1fr; }
-    .about-img-wrap { max-width: 240px; aspect-ratio: 1/1; }
+    .about-img-wrap { max-width: 200px; aspect-ratio: 3/4; }
 
     /* Projects: ocultar proj-right en pantallas pequeñas solo si no cabe */
     .proj-inner { grid-template-columns: 2.5rem 1fr; gap: 1rem; }
@@ -696,7 +699,8 @@ a:focus-visible {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        gap: 1rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
         min-width: 0;
         padding-top: 0;
     }
@@ -705,7 +709,6 @@ a:focus-visible {
     .exp-inner { grid-template-columns: 1fr; gap: 0.8rem; }
 
     /* Contact */
-    .contact-val { font-size: 0.75rem; white-space: normal; }
     .section-h2.is-big { font-size: clamp(2.5rem, 12vw, 5rem); }
 }
 
@@ -714,8 +717,9 @@ a:focus-visible {
     .hero-actions { flex-direction: column; }
     .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
     .about-chips span { font-size: 0.7rem; padding: 0.35rem 0.7rem; }
-    .contact-row { flex-wrap: wrap; gap: 0.5rem; }
-    .contact-label { width: auto; }
+    /* contact-row: mantener layout horizontal, solo ajustar label */
+    .contact-label { width: 62px; flex: 0 0 62px; }
+    .contact-val { font-size: 0.78rem; }
     .hstat strong { font-size: 1.4rem; }
     .filter-bar { gap: 0.25rem; }
     .f-btn { font-size: 0.7rem; padding: 0.4rem 0.9rem; }

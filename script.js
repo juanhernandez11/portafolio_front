@@ -99,7 +99,7 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
 ═══════════════════════════════════════════════ */
 function initPage() {
     if (pageInitialized) return;
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+    if (typeof gsap === 'undefined') {
         showStaticContent();
         return;
     }
@@ -108,12 +108,20 @@ function initPage() {
     initNav();
     initHero();
     initScrollingText();
-    initSplitTitles();
-    initScrollReveals();
-    initCounters();
-    initProjectDividers();
-    initExpDividers();
-    initContactRows();
+
+    // Funciones que dependen de ScrollTrigger
+    if (typeof ScrollTrigger !== 'undefined') {
+        initSplitTitles();
+        initScrollReveals();
+        initCounters();
+        initProjectDividers();
+        initExpDividers();
+        initContactRows();
+    } else {
+        // ScrollTrigger no disponible: mostrar contenido estático
+        showStaticContent();
+    }
+
     initFilters();
 }
 
@@ -397,6 +405,8 @@ function initFilters() {
             btn.classList.add('active');
             btns.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
             const filter = btn.dataset.filter;
+
+            // Guard: solo llamar gsap si está disponible
             if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
                 gsap.killTweensOf(rows);
             }
@@ -452,13 +462,16 @@ document.addEventListener('click', e => {
 /* ═══════════════════════════════════════════════
    NAV solid class CSS
 ═══════════════════════════════════════════════ */
-const navStyle = document.createElement('style');
-navStyle.textContent = `
+if (!document.getElementById('nav-solid-style')) {
+    const navStyle = document.createElement('style');
+    navStyle.id = 'nav-solid-style';
+    navStyle.textContent = `
   #nav-panels.is-solid .nav-panel {
     box-shadow: 0 1px 0 rgba(12,11,11,0.08);
   }
 `;
-document.head.appendChild(navStyle);
+    document.head.appendChild(navStyle);
+}
 
 const currentYear = document.getElementById('current-year');
 if (currentYear) currentYear.textContent = new Date().getFullYear();
