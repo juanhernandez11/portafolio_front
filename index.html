@@ -47,7 +47,7 @@
 </div>
 
 <!-- MOBILE MENU -->
-<div class="nav-menu" id="nav-menu">
+<div class="nav-menu" id="nav-menu" role="navigation" aria-label="Navegación principal">
     <div class="nav-menu-inner">
         <a href="#about" class="nav-menu-link">Sobre mí</a>
         <a href="#projects" class="nav-menu-link">Proyectos</a>
@@ -109,17 +109,17 @@
 
     <div class="hero-stats">
         <div class="hstat">
-            <strong class="counter" data-target="9">0</strong>
+            <strong class="counter" data-target="9" data-suffix="+">0</strong>
             <span>Proyectos</span>
         </div>
         <div class="hstat-sep"></div>
         <div class="hstat">
-            <strong class="counter" data-target="35">0</strong>
+            <strong class="counter" data-target="35" data-suffix="">0</strong>
             <span>% menos carga</span>
         </div>
         <div class="hstat-sep"></div>
         <div class="hstat">
-            <strong class="counter" data-target="2">0</strong>
+            <strong class="counter" data-target="2" data-suffix="">0</strong>
             <span>Años exp.</span>
         </div>
         <div class="hstat-links">
@@ -426,26 +426,22 @@
         <div class="section-label reveal-fade">Contacto</div>
         <h2 class="section-h2 reveal-lines is-big">Hablemos.</h2>
         <p class="contact-sub reveal-fade">Disponible para empleo remoto o híbrido · Respondo en menos de 24h</p>
-        <div class="contact-list">
+        <div class="contact-sub">
             <a class="contact-row" href="mailto:juanhernandezbravo750@gmail.com">
                 <span class="contact-label">Email</span>
                 <span class="contact-val">juanhernandezbravo750@gmail.com</span>
-                <span class="contact-arrow">↗</span>
             </a>
             <a class="contact-row" href="https://www.linkedin.com/in/juan-ramon-moreno-bravo-0830b1271/" target="_blank" rel="noopener">
                 <span class="contact-label">LinkedIn</span>
                 <span class="contact-val">juan-ramon-moreno-bravo</span>
-                <span class="contact-arrow">↗</span>
             </a>
             <a class="contact-row" href="https://github.com/juanhernandez11" target="_blank" rel="noopener">
                 <span class="contact-label">GitHub</span>
                 <span class="contact-val">juanhernandez11</span>
-                <span class="contact-arrow">↗</span>
             </a>
             <a class="contact-row" href="cv/JUAN RAMON MORENO BRAVO.pdf" download>
                 <span class="contact-label">CV</span>
                 <span class="contact-val">Descargar PDF</span>
-                <span class="contact-arrow">↗</span>
             </a>
         </div>
     </div>
@@ -453,7 +449,7 @@
 
 <footer class="footer">
     <div class="footer-inner">
-        <span>© 2025 Juan Ramon Moreno Bravo</span>
+        <span>© <span id="current-year">2026</span> Juan Ramon Moreno Bravo</span>
         <span>Frontend Engineer · México</span>
     </div>
 </footer>
