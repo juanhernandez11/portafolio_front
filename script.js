@@ -554,11 +554,11 @@ if (currentYear) currentYear.textContent = new Date().getFullYear();
 ═══════════════════════════════════════════════ */
 const projectData = {
   'estudio-genius': {
-    num: '01',
+    num: '02',
     title: 'Estudio Genius',
-    context: 'Plataforma académica para gestión de tareas, autenticación de usuarios y asistente de estudio. Diseñada para uso real con usuarios activos.',
-    built: 'Aplicación web completa con autenticación Firebase, CRUD de tareas en tiempo real, interfaz responsiva y arquitectura cliente-first para minimizar latencia.',
-    stack: ['React', 'TypeScript', 'Firebase', 'Netlify'],
+    context: 'Plataforma académica para gestión de tareas, autenticación de usuarios y asistente de estudio. Diseñada para uso real con usuarios activos. Diciembre 2025 — Febrero 2026.',
+    built: 'Aplicación web con autenticación, gestión de tareas, asistente de estudio y arquitectura cliente-first para minimizar latencia.',
+    stack: ['React', 'TypeScript', 'Firebase', 'Groq API', 'Netlify'],
     work: [
       'Arquitectura de componentes React con TypeScript',
       'Integración de Firebase Auth y Firestore',
@@ -570,9 +570,9 @@ const projectData = {
     github: null
   },
   'canal-etico': {
-    num: '02',
+    num: '01',
     title: 'Canal Ético de Denuncias — ARH',
-    context: 'ARH Consultores necesitaba un sistema para recibir y gestionar denuncias de forma confidencial y estructurada. No existía ningún sistema previo en la empresa.',
+    context: 'ARH Consultores necesitaba un sistema para recibir y gestionar denuncias de forma confidencial y estructurada. No existía ningún sistema previo en la empresa. Febrero 2026 — Actualidad.',
     built: 'Sistema Full Stack con flujo de 6 etapas para denuncias, generación de folios únicos, panel de administración, ciclo completo de estados y notificaciones automáticas por correo.',
     stack: ['Next.js', 'Supabase', 'NodeMailer', 'Netlify'],
     work: [
@@ -590,9 +590,9 @@ const projectData = {
   'sistema-inventario': {
     num: '04',
     title: 'Sistema de Inventario — Salud Pública',
-    context: 'La Jurisdicción Sanitaria Núm. 10 gestionaba su inventario completamente en Excel. Proceso manual, lento y propenso a errores.',
+    context: 'La Jurisdicción Sanitaria Núm. 10 gestionaba su inventario completamente en Excel. Proyecto desarrollado durante mi experiencia como Pasante de Informática. Mayo 2024 — Agosto 2024.',
     built: 'Sistema web de control de inventarios con arquitectura MVC, reportes automatizados y sustitución completa del flujo en Excel.',
-    stack: ['PHP', 'MySQL', 'MVC', 'HTML', 'CSS'],
+    stack: ['PHP', 'MySQL', 'MVC'],
     work: [
       'Análisis de requerimientos con el área administrativa',
       'Diseño e implementación de base de datos MySQL',
