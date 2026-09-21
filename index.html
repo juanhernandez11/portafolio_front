@@ -4,8 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juan Ramón Moreno — Frontend Engineer · React, Angular, Vue.js</title>
-    <meta name="description" content="Portfolio de Juan Ramón Moreno Bravo, Frontend Engineer con 2 años construyendo productos digitales reales. Especializado en React, Angular, Vue.js y TypeScript. Disponible para empleo remoto desde México.">
-    <meta name="theme-color" content="#fdfcfa">
+    <meta name="description" content="Juan Ramón Moreno Bravo — Frontend Engineer. Construyo interfaces y productos web con React, Angular, Vue.js y TypeScript. Portfolio con proyectos reales. Disponible para empleo remoto desde México.">
+    <meta name="theme-color" content="#fdfcfa" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0e0d0d" media="(prefers-color-scheme: dark)">
+    <script>
+        // Anti-flash: aplicar tema guardado ANTES de que el CSS cargue
+        (function(){
+            var t = localStorage.getItem('theme');
+            if (!t) {
+                t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
     <link rel="canonical" href="https://portafoliofront.netlify.app/">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_MX">
@@ -58,26 +69,36 @@
     <div class="nav-panel">
         <a href="#hero" class="nav-logo">JR.</a>
         <nav class="nav-links" aria-label="Navegación de escritorio">
-            <a href="#about" class="nav-link">Sobre mí</a>
             <a href="#projects" class="nav-link">Proyectos</a>
+            <a href="#about" class="nav-link">Sobre mí</a>
             <a href="#experience" class="nav-link">Experiencia</a>
             <a href="#contact" class="nav-link">Contacto</a>
         </nav>
-        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu">
-            <span class="toggle-label" id="toggle-label">menú</span>
-            <div class="toggle-icon">
-                <span class="toggle-span is-top"></span>
-                <span class="toggle-span is-bottom"></span>
-            </div>
-        </button>
+        <div class="nav-right">
+            <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar a modo oscuro" title="Cambiar tema">
+                <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                </svg>
+                <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu">
+                <span class="toggle-label" id="toggle-label">menú</span>
+                <div class="toggle-icon">
+                    <span class="toggle-span is-top"></span>
+                    <span class="toggle-span is-bottom"></span>
+                </div>
+            </button>
+        </div>
     </div>
 </header>
 
 <!-- MOBILE MENU -->
 <nav class="nav-menu" id="nav-menu" aria-label="Navegación principal" aria-hidden="true" inert>
     <div class="nav-menu-inner">
-        <a href="#about" class="nav-menu-link">Sobre mí</a>
         <a href="#projects" class="nav-menu-link">Proyectos</a>
+        <a href="#about" class="nav-menu-link">Sobre mí</a>
         <a href="#experience" class="nav-menu-link">Experiencia</a>
         <a href="#contact" class="nav-menu-link">Contacto</a>
     </div>
@@ -97,7 +118,7 @@
                 <span class="text-mask"><span class="text-inner is-italic">Engineer.</span></span>
             </h1>
             <div class="hero-sub-row">
-                <p class="hero-desc text-mask"><span class="text-inner">Frontend Engineer con 2 años construyendo productos digitales reales.<br>React · Angular · Vue.js · TypeScript · Core Web Vitals · APIs.</span></p>
+                <p class="hero-desc text-mask"><span class="text-inner">Construyo interfaces y productos web con React, Angular, Vue.js y TypeScript.</span></p>
                 <div class="hero-actions text-mask">
                     <span class="text-inner">
                         <a href="#projects" class="btn-primary">Ver proyectos</a>
@@ -140,8 +161,8 @@
         </div>
         <div class="hstat-sep"></div>
         <div class="hstat">
-            <strong class="counter" data-target="35" data-suffix="">0</strong>
-            <span>% menos carga</span>
+            <strong class="counter" data-target="3" data-suffix="+">0</strong>
+            <span>Empresas</span>
         </div>
         <div class="hstat-sep"></div>
         <div class="hstat">
@@ -188,40 +209,11 @@
     </div>
 </div>
 
-<!-- ABOUT -->
-<section id="about" class="section is-about">
-    <div class="section-inner">
-        <div class="section-label reveal-fade">Sobre mí</div>
-        <div class="about-grid">
-            <div class="about-img-col reveal-scale">
-                <div class="about-img-wrap">
-                    <img src="foto/9571 - DIGITAL.jpg" alt="Juan Ramon Moreno Bravo" width="709" height="1063" loading="lazy" decoding="async">
-                </div>
-            </div>
-            <div class="about-text-col">
-                <h2 class="section-h2 reveal-lines">Hago que el frontend importe de verdad.</h2>
-                <p class="body-text reveal-fade">Soy <strong>Juan Ramon Moreno Bravo</strong>, Frontend Engineer con 2 años entregando productos digitales funcionales para instituciones, consultoras y clientes reales.</p>
-                <p class="body-text reveal-fade">Stack principal: React, Angular y Vue.js con TypeScript. Enfoque en rendimiento, Core Web Vitals, integración de APIs y código que escala en producción.</p>
-                <div class="about-chips reveal-fade">
-                    <span>💼 Disponible</span>
-                    <span>🎓 Ing. en Sistemas</span>
-                    <span>📍 Tehuacán, Puebla</span>
-                    <span>🌐 Español · Inglés básico</span>
-                </div>
-                <div class="about-actions reveal-fade">
-                    <a href="cv/JUAN RAMON MORENO BRAVO.pdf" download class="btn-primary">Descargar CV</a>
-                    <a href="mailto:juanhernandezbravo750@gmail.com" class="btn-ghost">Contactar</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- PROJECTS -->
+<!-- PROJECTS (Selected Work) -->
 <section id="projects" class="section is-projects">
     <div class="section-inner">
-        <div class="section-label reveal-fade">Proyectos</div>
-        <h2 class="section-h2 reveal-lines">Trabajo seleccionado.</h2>
+        <div class="section-label reveal-fade">Selected Work</div>
+        <h2 class="section-h2 reveal-lines">Proyectos reales.</h2>
         <div class="filter-bar reveal-fade">
             <button class="f-btn active" data-filter="all" aria-pressed="true">Todos</button>
             <button class="f-btn" data-filter="professional" aria-pressed="false">Profesional</button>
@@ -230,7 +222,7 @@
         </div>
         <div class="proj-list" id="projects-grid">
 
-            <article class="proj-item" data-category="personal">
+            <article class="proj-item" data-category="personal" data-index="01">
                 <div class="proj-divider"></div>
                 <div class="proj-inner">
                     <span class="proj-num">01</span>
@@ -242,11 +234,12 @@
                     <div class="proj-right">
                         <span class="proj-badge">En producción</span>
                         <a href="https://estudiogenius.netlify.app/" target="_blank" rel="noopener noreferrer" class="proj-link" aria-label="Ver proyecto Estudio Genius">Ver proyecto ↗</a>
+                        <button class="proj-cs-btn" data-project="estudio-genius" aria-label="Ver caso de estudio Estudio Genius">caso de estudio →</button>
                     </div>
                 </div>
             </article>
 
-            <article class="proj-item" data-category="professional">
+            <article class="proj-item" data-category="professional" data-index="02">
                 <div class="proj-divider"></div>
                 <div class="proj-inner">
                     <span class="proj-num">02</span>
@@ -258,11 +251,12 @@
                     <div class="proj-right">
                         <span class="proj-badge">Full Stack</span>
                         <a href="https://denunciasarhconsultores.netlify.app/" target="_blank" rel="noopener noreferrer" class="proj-link" aria-label="Ver proyecto Canal Ético de Denuncias ARH">Ver proyecto ↗</a>
+                        <button class="proj-cs-btn" data-project="canal-etico" aria-label="Ver caso de estudio Canal Ético ARH">caso de estudio →</button>
                     </div>
                 </div>
             </article>
 
-            <article class="proj-item" data-category="professional">
+            <article class="proj-item" data-category="professional" data-index="03">
                 <div class="proj-divider"></div>
                 <div class="proj-inner">
                     <span class="proj-num">03</span>
@@ -274,11 +268,12 @@
                     <div class="proj-right">
                         <span class="proj-badge is-muted">En producción</span>
                         <a href="https://www.appsheet.com/start/b8a666c2-a540-42f0-9aa0-5af268b55232" target="_blank" rel="noopener noreferrer" class="proj-link" aria-label="Ver app del Taller Mecánico">Ver app ↗</a>
+                        <button class="proj-cs-btn" data-project="taller-mecanico" aria-label="Ver caso de estudio Taller Mecánico">caso de estudio →</button>
                     </div>
                 </div>
             </article>
 
-            <article class="proj-item" data-category="professional">
+            <article class="proj-item" data-category="professional" data-index="04">
                 <div class="proj-divider"></div>
                 <div class="proj-inner">
                     <span class="proj-num">04</span>
@@ -290,11 +285,12 @@
                     <div class="proj-right">
                         <span class="proj-badge">−20% gestión</span>
                         <a href="https://github.com/juanhernandez11/inventario.mvc" target="_blank" rel="noopener noreferrer" class="proj-link" aria-label="Ver código del Sistema de Inventario en GitHub">GitHub ↗</a>
+                        <button class="proj-cs-btn" data-project="sistema-inventario" aria-label="Ver caso de estudio Sistema de Inventario">caso de estudio →</button>
                     </div>
                 </div>
             </article>
 
-            <article class="proj-item" data-category="professional">
+            <article class="proj-item" data-category="professional" data-index="05">
                 <div class="proj-divider"></div>
                 <div class="proj-inner">
                     <span class="proj-num">05</span>
@@ -310,7 +306,7 @@
                 </div>
             </article>
 
-            <article class="proj-item" data-category="freelance">
+            <article class="proj-item" data-category="freelance" data-index="06">
                 <div class="proj-divider"></div>
                 <div class="proj-inner">
                     <span class="proj-num">06</span>
@@ -325,7 +321,7 @@
                 </div>
             </article>
 
-            <article class="proj-item" data-category="freelance">
+            <article class="proj-item" data-category="freelance" data-index="07">
                 <div class="proj-divider"></div>
                 <div class="proj-inner">
                     <span class="proj-num">07</span>
@@ -340,7 +336,7 @@
                 </div>
             </article>
 
-            <article class="proj-item" data-category="freelance">
+            <article class="proj-item" data-category="freelance" data-index="08">
                 <div class="proj-divider"></div>
                 <div class="proj-inner">
                     <span class="proj-num">08</span>
@@ -355,7 +351,7 @@
                 </div>
             </article>
 
-            <article class="proj-item" data-category="personal">
+            <article class="proj-item" data-category="personal" data-index="09">
                 <div class="proj-divider"></div>
                 <div class="proj-inner">
                     <span class="proj-num">09</span>
@@ -371,6 +367,44 @@
             </article>
 
             <div class="proj-item proj-item--last"><div class="proj-divider"></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- caso de estudio MODAL -->
+<div class="cs-overlay" id="cs-overlay" aria-hidden="true" inert>
+    <div class="cs-panel" role="dialog" aria-modal="true" aria-labelledby="cs-title">
+        <div class="cs-panel-header">
+            <div>
+                <span class="cs-panel-num" id="cs-num"></span>
+                <h2 class="cs-panel-title" id="cs-title"></h2>
+            </div>
+            <button class="cs-close" id="cs-close" aria-label="Cerrar caso de estudio">✕</button>
+        </div>
+        <div class="cs-panel-body" id="cs-body"></div>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="section is-about">
+    <div class="section-inner">
+        <div class="section-label reveal-fade">Sobre mí</div>
+        <div class="about-grid about-grid--centered">
+            <div class="about-text-col">
+                <h2 class="section-h2 reveal-lines">Quién está detrás del código.</h2>
+                <p class="body-text reveal-fade">Soy <strong>Juan Ramon Moreno Bravo</strong>, Frontend Engineer con 2 años entregando productos digitales funcionales para instituciones, consultoras y clientes reales. Stack principal: React, Angular y Vue.js con TypeScript.</p>
+                <p class="body-text reveal-fade">Me enfoco en rendimiento, Core Web Vitals e integración de APIs. Escribo código que escala, se entiende y va a producción.</p>
+                <div class="about-chips reveal-fade">
+                    <span>💼 Disponible</span>
+                    <span>🎓 Ing. en Sistemas</span>
+                    <span>📍 Tehuacán, Puebla</span>
+                    <span>🌐 Español · Inglés básico</span>
+                </div>
+                <div class="about-actions reveal-fade">
+                    <a href="cv/JUAN RAMON MORENO BRAVO.pdf" download class="btn-primary">Descargar CV</a>
+                    <a href="mailto:juanhernandezbravo750@gmail.com" class="btn-ghost">Contactar</a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -436,7 +470,7 @@
                             <li>Optimicé tiempos de carga un <strong>35%</strong> en promedio con compresión de assets y lazy loading</li>
                             <li>Gestioné expectativas, presupuestos y cambios de alcance directamente con cada cliente</li>
                         </ul>
-                        <p class="exp-logro">Base real de clientes pagando — aprendí más en estos 2 años que en cualquier curso</p>
+                        <p class="exp-logro">Experiencia con clientes reales: entregas, comunicación, presupuestos y gestión de proyectos de principio a fin.</p>
                     </div>
                 </div>
             </div>
@@ -488,5 +522,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="script.js"></script>
+
+<!-- caso de estudio modal logic is handled by initCaseStudies() in script.js -->
+
 </body>
 </html>

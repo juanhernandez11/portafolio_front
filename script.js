@@ -51,6 +51,7 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         initNav();
         initScrollingText();
         initFilters();
+        initCaseStudies();
         return;
     }
 
@@ -123,6 +124,7 @@ function initPage() {
     }
 
     initFilters();
+    initCaseStudies();
 }
 
 /* ═══════════════════════════════════════════════
@@ -469,9 +471,286 @@ if (!document.getElementById('nav-solid-style')) {
   #nav-panels.is-solid .nav-panel {
     box-shadow: 0 1px 0 rgba(12,11,11,0.08);
   }
+  [data-theme="dark"] #nav-panels.is-solid .nav-panel {
+    box-shadow: 0 1px 0 rgba(240,236,230,0.06);
+  }
 `;
     document.head.appendChild(navStyle);
 }
 
+/* ═══════════════════════════════════════════════
+   DARK MODE — toggle día/noche
+═══════════════════════════════════════════════ */
+function initTheme() {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+
+    // Leer preferencia guardada o del sistema
+    const stored = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initial = stored || (prefersDark ? 'dark' : 'light');
+
+    applyTheme(initial, false);
+
+    btn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'light';
+        applyTheme(current === 'dark' ? 'light' : 'dark', true);
+    });
+}
+
+function applyTheme(theme, animate) {
+    const btn = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+
+    if (animate && !prefersReducedMotion) {
+        // Pequeño flash de escala en el botón como feedback
+        if (typeof gsap !== 'undefined') {
+            gsap.fromTo(btn,
+                { scale: 0.8 },
+                { scale: 1, duration: 0.35, ease: 'back.out(1.5)' }
+            );
+        }
+    }
+
+    html.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+
+    // Actualizar aria-label del botón
+    btn.setAttribute('aria-label',
+        theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'
+    );
+
+    // Actualizar SVG fill del ring en el hero para que cambie con el tema
+    const ringGradientStops = document.querySelectorAll('#hero-ring-gradient stop');
+    const ringBall = document.querySelector('.hero-ring-ball');
+    const ringTrack = document.querySelector('.hero-ring-track');
+    if (theme === 'dark') {
+        ringGradientStops.forEach(s => s.setAttribute('stop-color', '#f0ece6'));
+        if (ringBall) ringBall.setAttribute('fill', '#f0ece6');
+        if (ringTrack) ringTrack.setAttribute('stroke', 'rgba(240,236,230,0.12)');
+    } else {
+        ringGradientStops.forEach(s => s.setAttribute('stop-color', '#0c0b0b'));
+        if (ringBall) ringBall.setAttribute('fill', '#0c0b0b');
+        if (ringTrack) ringTrack.setAttribute('stroke', 'rgba(12,11,11,0.12)');
+    }
+}
+
+// Inicializar tema antes del loader para evitar flash
+(function () {
+    const stored = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = stored || (prefersDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+})();
+
+initTheme();
+
 const currentYear = document.getElementById('current-year');
 if (currentYear) currentYear.textContent = new Date().getFullYear();
+
+
+/* ═══════════════════════════════════════════════
+   CASE STUDIES — datos de proyectos
+═══════════════════════════════════════════════ */
+const projectData = {
+  'estudio-genius': {
+    num: '01',
+    title: 'Estudio Genius',
+    context: 'Plataforma académica para gestión de tareas, autenticación de usuarios y asistente de estudio. Diseñada para uso real con usuarios activos.',
+    built: 'Aplicación web completa con autenticación Firebase, CRUD de tareas en tiempo real, interfaz responsiva y arquitectura cliente-first para minimizar latencia.',
+    stack: ['React', 'TypeScript', 'Firebase', 'Netlify'],
+    work: [
+      'Arquitectura de componentes React con TypeScript',
+      'Integración de Firebase Auth y Firestore',
+      'Diseño e implementación de la interfaz completa',
+      'Optimización de rendimiento client-side'
+    ],
+    result: 'Plataforma en producción con usuarios activos.',
+    url: 'https://estudiogenius.netlify.app/',
+    github: null
+  },
+  'canal-etico': {
+    num: '02',
+    title: 'Canal Ético de Denuncias — ARH',
+    context: 'ARH Consultores necesitaba un sistema para recibir y gestionar denuncias de forma confidencial y estructurada. No existía ningún sistema previo en la empresa.',
+    built: 'Sistema Full Stack con flujo de 6 etapas para denuncias, generación de folios únicos, panel de administración, ciclo completo de estados y notificaciones automáticas por correo.',
+    stack: ['Next.js', 'Supabase', 'NodeMailer', 'Netlify'],
+    work: [
+      'Diseño de arquitectura completa del sistema',
+      'Desarrollo del frontend con Next.js',
+      'Integración de base de datos con Supabase',
+      'Sistema de notificaciones con NodeMailer',
+      'Panel de administración para gestión de casos',
+      'Flujo de 6 etapas con ciclo de estados'
+    ],
+    result: 'Primer sistema de este tipo en la empresa. Actualmente en producción para ARH Consultores.',
+    url: 'https://denunciasarhconsultores.netlify.app/',
+    github: null
+  },
+  'sistema-inventario': {
+    num: '04',
+    title: 'Sistema de Inventario — Salud Pública',
+    context: 'La Jurisdicción Sanitaria Núm. 10 gestionaba su inventario completamente en Excel. Proceso manual, lento y propenso a errores.',
+    built: 'Sistema web de control de inventarios con arquitectura MVC, reportes automatizados y sustitución completa del flujo en Excel.',
+    stack: ['PHP', 'MySQL', 'MVC', 'HTML', 'CSS'],
+    work: [
+      'Análisis de requerimientos con el área administrativa',
+      'Diseño e implementación de base de datos MySQL',
+      'Desarrollo del sistema con arquitectura MVC en PHP',
+      'Automatización de reportes administrativos'
+    ],
+    result: 'Redujo tiempos de gestión un 20% en el primer mes. Eliminó aproximadamente 3 horas de trabajo manual semanal.',
+    url: null,
+    github: 'https://github.com/juanhernandez11/inventario.mvc'
+  },
+  'taller-mecanico': {
+    num: '03',
+    title: 'Taller Mecánico — App Operativa',
+    context: 'Taller mecánico local necesitaba gestionar órdenes de trabajo, inventario y clientes sin presupuesto para infraestructura de servidor.',
+    built: 'Aplicación operativa No-Code con AppSheet y Google Sheets como backend. Gestión completa de órdenes, inventario y clientes.',
+    stack: ['AppSheet', 'Google Sheets', 'No-Code'],
+    work: [
+      'Diseño de la estructura de datos en Google Sheets',
+      'Configuración y personalización en AppSheet',
+      'Implementación de flujos de trabajo y vistas',
+      'Capacitación al equipo del taller'
+    ],
+    result: 'En producción con costo de infraestructura cero para el negocio.',
+    url: 'https://www.appsheet.com/start/b8a666c2-a540-42f0-9aa0-5af268b55232',
+    github: null
+  }
+};
+
+/* ═══════════════════════════════════════════════
+   CASE STUDIES — modal slide-in
+═══════════════════════════════════════════════ */
+function initCaseStudies() {
+  const overlay  = document.getElementById('cs-overlay');
+  const body     = document.getElementById('cs-body');
+  const numEl    = document.getElementById('cs-num');
+  const titleEl  = document.getElementById('cs-title');
+  const closeBtn = document.getElementById('cs-close');
+
+  if (!overlay || !body) return;
+
+  let previousFocus = null;
+
+  function openCS(projectKey) {
+    const data = projectData[projectKey];
+    if (!data) return;
+
+    // Inyectar contenido
+    numEl.textContent   = data.num;
+    titleEl.textContent = data.title;
+
+    let html = '';
+
+    if (data.context) {
+      html += `<div>
+        <span class="cs-section-label">Contexto</span>
+        <p class="cs-section-text">${data.context}</p>
+      </div>`;
+    }
+
+    if (data.built) {
+      html += `<div>
+        <span class="cs-section-label">Qué construí</span>
+        <p class="cs-section-text">${data.built}</p>
+      </div>`;
+    }
+
+    if (data.work && data.work.length) {
+      html += `<div>
+        <span class="cs-section-label">Mi trabajo</span>
+        <ul class="cs-list">${data.work.map(w => `<li>${w}</li>`).join('')}</ul>
+      </div>`;
+    }
+
+    if (data.stack && data.stack.length) {
+      html += `<div>
+        <span class="cs-section-label">Stack</span>
+        <div class="cs-tags">${data.stack.map(s => `<span>${s}</span>`).join('')}</div>
+      </div>`;
+    }
+
+    if (data.result) {
+      html += `<div class="cs-result">
+        <strong>Resultado</strong>
+        <p>${data.result}</p>
+      </div>`;
+    }
+
+    const links = [];
+    if (data.url)    links.push(`<a href="${data.url}"    target="_blank" rel="noopener noreferrer">Ver proyecto ↗</a>`);
+    if (data.github) links.push(`<a href="${data.github}" target="_blank" rel="noopener noreferrer">GitHub ↗</a>`);
+    if (links.length) {
+      html += `<div class="cs-link-row">${links.join('')}</div>`;
+    }
+
+    body.innerHTML = html;
+
+    // Abrir overlay
+    previousFocus = document.activeElement;
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+    overlay.inert = false;
+    document.body.style.overflow = 'hidden';
+    if (lenis) lenis.stop();
+    closeBtn?.focus();
+
+    // Animar contenido si GSAP disponible
+    if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+      const sections = body.querySelectorAll('div, .cs-result');
+      gsap.fromTo(sections,
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.5, stagger: 0.06, ease: 'power3.out', delay: 0.3 }
+      );
+    }
+  }
+
+  function closeCS() {
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    overlay.inert = true;
+    document.body.style.overflow = '';
+    if (lenis) lenis.start();
+    previousFocus?.focus();
+    previousFocus = null;
+    setTimeout(() => { body.innerHTML = ''; }, 600);
+  }
+
+  // Abrir con click en cualquier botón .proj-cs-btn
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('.proj-cs-btn');
+    if (btn) {
+      const key = btn.dataset.project;
+      if (key) openCS(key);
+    }
+  });
+
+  // Cerrar con botón close
+  closeBtn?.addEventListener('click', closeCS);
+
+  // Cerrar con click en el backdrop (fuera del panel)
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closeCS();
+  });
+
+  // Cerrar con Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeCS();
+  });
+
+  // Focus trap
+  overlay.addEventListener('keydown', e => {
+    if (e.key !== 'Tab' || !overlay.classList.contains('is-open')) return;
+    const focusable = overlay.querySelectorAll('button, a, [tabindex]:not([tabindex="-1"])');
+    const first = focusable[0];
+    const last  = focusable[focusable.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last?.focus(); }
+    } else {
+      if (document.activeElement === last)  { e.preventDefault(); first?.focus(); }
+    }
+  });
+}
