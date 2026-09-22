@@ -934,6 +934,7 @@ a:focus-visible {
   transition: transform 0.55s var(--ease-out);
   overflow: hidden;
   border-left: 1px solid var(--border);
+  height: 100%;
 }
 .cs-overlay.is-open .cs-panel { transform: translateX(0); }
 .cs-panel-header {
@@ -966,11 +967,13 @@ a:focus-visible {
 .cs-panel-body {
   padding: 2rem var(--pad) 3rem;
   display: flex; flex-direction: column; gap: 2rem;
-  flex: 1 1 auto;
+  flex: 1 1 0;
   min-height: 0;
-  overflow-y: auto;
+  max-height: 100%;
+  overflow-y: scroll;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
+  scroll-behavior: auto;
 }
 .cs-section-label {
   font-size: 0.6rem; font-weight: 700;

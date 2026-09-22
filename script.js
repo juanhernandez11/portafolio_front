@@ -698,6 +698,9 @@ function initCaseStudies() {
     if (lenis) lenis.stop();
     closeBtn?.focus();
 
+    // Scroll dentro del panel: interceptar wheel para bypassear Lenis
+    body.scrollTop = 0;
+
     // Animar contenido si GSAP disponible
     if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
       const sections = body.querySelectorAll('div, .cs-result');
@@ -753,4 +756,24 @@ function initCaseStudies() {
       if (document.activeElement === last)  { e.preventDefault(); first?.focus(); }
     }
   });
+
+  // Bypassear Lenis: el panel hace scroll nativo con wheel y touch
+  const panel = overlay.querySelector('.cs-panel');
+
+  panel.addEventListener('wheel', e => {
+    e.stopPropagation();
+    body.scrollTop += e.deltaY;
+  }, { passive: true });
+
+  // Touch scroll nativo en móvil
+  let touchStartY = 0;
+  panel.addEventListener('touchstart', e => {
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  panel.addEventListener('touchmove', e => {
+    e.stopPropagation();
+    const delta = touchStartY - e.touches[0].clientY;
+    body.scrollTop += delta;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
 }
